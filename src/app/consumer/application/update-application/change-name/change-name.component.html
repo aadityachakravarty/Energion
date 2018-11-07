@@ -1,0 +1,217 @@
+<div class="container" style="margin-top: 30px;">
+
+  <div class="jumbotron">
+    <form [formGroup]="changeNameForm" (ngSubmit)="onChangeName()">
+      <div class="row container-fluid">
+        <h4 class="brown-text">Application for Change of Name</h4>
+      </div>
+      <hr>
+      <br>
+      <div class="row">
+
+        <div class="col-sm-6">
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Application Number:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.applicationNumber}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Applicant's Name:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.applicantName}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Father's Name/ Husband's Name:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.fatherName_husbandName}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Aadhar Number:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.aadharNumber}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Mobile Number:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.mobileNumber}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>E-mail:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.email}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Meter Number:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.meterNumber}}
+            </div>
+          </div>
+          <!--/Row-->
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Permanent Address:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.permanentAddress}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Connection Address:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.connectionAddress}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Load Demand:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.loadDemand}} KW
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Connection Category:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.connectionCategory}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Connection Type:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.connectionType}}
+            </div>
+          </div>
+          <!--/Row-->
+
+          <br>
+
+          <!--Row-->
+          <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+              <strong>Voltage Supply:</strong>
+            </div>
+            <div class="col-sm-6">
+              {{changeNameData.voltageSupply}}
+            </div>
+          </div>
+          <!--/Row-->
+        </div>
+
+      </div>
+
+      <hr>
+
+      <!--Row-->
+      <div class="row">
+        <div class="col-sm-8 offset-sm-1">
+          <div class="md-form">
+            <input type="text" id="newUserEmail" formControlName="newUserEmail" style="width: 100%" class="form-control"
+                   mdbActive>
+            <label for="newUserEmail">E-mail of New User</label>
+          </div>
+        </div>
+      </div>
+      <!--/Row-->
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-4 offset-sm-1 my-3">
+          <button class="btn btn-md btn-block btn-success btn-lg waves-light" type="submit" role="button"
+                  mdbRippleRadius>Submit
+          </button>
+        </div>
+        <div class="col-sm-4 offset-sm-1 my-3">
+          <button class="btn btn-md btn-block btn-danger btn-lg waves-light" type="button" role="button"
+                  mdbRippleRadius>Edit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,156 @@
+.mainContent{
+    margin-bottom: 100px;
+}
+
+.gMap{
+  width: 80%;
+    height: 40vh;
+    background: aliceblue;
+    z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -620px;
+    /*margin-bottom: 50vh;*/
+    box-shadow: 0px 0px 60px 0.1px rgba(45, 103, 130, 0.5);
+    position: relative;
+}
+
+.hero .back{
+    width: 100%;
+  position: relative;
+    overflow: hidden;
+  height: 700px;
+
+}
+
+.hero .back span#grad{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 700px;
+    z-index: -5;
+}
+
+#grad{
+    background: linear-gradient(130deg, #1b4790 30%, #4ce499 100%);
+}
+
+.hero .back span#white{
+  width: 100%;
+  height: 800px;
+  margin-top: 60vh;
+  background: #ffffff;
+  position: absolute;
+  transform: skewY(-15deg);
+}
+
+.userSection{
+    width: 87%;
+    height: 300px;
+    margin: 50px auto;
+}
+
+/*.newCon .img{*/
+    /*background: ;*/
+/*}*/
+
+/*.updateCon .img{*/
+    /*background: ;*/
+/*}*/
+
+/*.deaCon .img{*/
+    /*background: ;*/
+/*}*/
+
+/*.updateCon .myBox{*/
+/*}*/
+
+.myBox{
+	height: 300px;
+	background: white;
+    float: left;
+    margin: 20px;
+	box-shadow: 5px 4px 10px rgba(0,0,0,.2);
+	transition: 0.15s ease-out;
+    cursor: pointer;
+}
+
+.myBox h1{
+	font-size: 22px;
+	margin: 0px;
+    padding: 2px;
+	background: rgba(0,0,0,.5);
+	text-align: center;
+	position: absolute;
+	color: white;
+}
+
+.myBox, .myBox h1{
+    width: 320px;
+}
+
+.img{
+	background-repeat: no-repeat;
+	background-size: cover;
+    background: #2d6782;
+	height: 200px;
+	margin-bottom: 8px;
+}
+
+.myBox p{
+	margin-left: 15px;
+    font-size: 18px;
+    margin-right: 5px;
+	color: black !important;
+}
+
+.myBox:hover{
+	transform: scale(1.04);
+}
+
+.track{
+    width:100%;
+    height: 400px;
+    clear: both;
+    padding-top: 50px;
+}
+
+.trackUser{
+    width: 80%;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
+    background: white;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 250px auto 350px;
+    margin: auto;
+    border-radius: 7px;
+}
+
+.blueButton{
+    height:50px;
+    width: 200px;
+    padding: 10px 30px;
+    background: #0DC7BB;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 1.5em;
+    transition: all 0.2s;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
+}
+
+.trackUser p{
+    color: aqua;
+    font-size: 2em;
+    font-weight: 50%;
+}
+
+.trackUser *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.blueButton:hover{
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.3);
+}

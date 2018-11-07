@@ -1,0 +1,20 @@
+<div class="container" style="margin-top: 15px;">
+  <h3 class="brown-text h3-responsive">Base Map</h3>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="gMap">
+      <agm-map [latitude]="lat" [longitude]="lng" style="height: 100%">
+        <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+        <agm-marker [latitude]="lat" [longitude]="lng">
+          <agm-info-window>
+            <p>You are here!</p>
+          </agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m, i)" [latitude]="m.lat" [longitude]="m.lng">
+          <agm-info-window><strong>{{m.name}}</strong></agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>

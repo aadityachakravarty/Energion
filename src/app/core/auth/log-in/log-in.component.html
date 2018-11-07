@@ -1,0 +1,66 @@
+<div class="container logIn-body" style="margin-top: 15px;">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <div class="jumbotron" style="border-radius: 8px;">
+          <!-- Login form -->
+          <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onLogin();">
+            <h3 class=" text-center brown-text mb-4">Sign In</h3>
+
+            <div class="md-form row">
+              <!--<i class="fa fa-envelope prefix grey-text"></i>-->
+              <input type="text" id="defaultForm-email" formControlName="username" class="form-control" mdbActive mdbInputValidate>
+              <label for="defaultForm-email">Your email</label>
+            </div>
+
+            <div class="md-form row">
+              <!--<i class="fa fa-lock prefix grey-text"></i>-->
+              <input type="password" id="defaultForm-pass" formControlName="password" class="form-control" mdbActive mdbInputValidate>
+              <label for="defaultForm-pass">Your password</label>
+            </div>
+
+            <br>
+
+            <div class="row container-fluid">
+              <a class="text-primary pull-left">Forgot Password?</a>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <a class="text-primary">Create new account.</a>
+              </div>
+              <div class="col-sm-4 offset-sm-4">
+                <button class="btn btn-primary waves-light" type="submit" style="width: 100%;" mdbRippleRadius>Log In</button>
+              </div>
+            </div>
+          </form>
+          <!-- Login form -->
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Login Failure Modal-->
+
+<button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbRippleRadius>
+  Bottom
+</button>
+
+<div mdbModal #frame="mdb-modal" class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row px-4">
+          <p class="pt-1 pr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nisi quo provident fugiat reprehenderit nostrum quos..</p>
+          <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="frame.hide()" mdbRippleRadius>Close</button>
+          <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/Login Failure Modal-->

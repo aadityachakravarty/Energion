@@ -1,0 +1,201 @@
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-md navbar-dark mdb-color darken-2">
+
+  <!-- Navbar brand -->
+    <logo>
+      <ng-template [ngIf]="userType === 'consumer'">
+        <a class="navbar-brand" [routerLink]="'/'">Energion</a>
+      </ng-template>
+
+      <ng-template [ngIf]="userType === 'admin'">
+        <a class="navbar-brand" [routerLink]="'/admin/verify-new-applications'">Energion</a>
+      </ng-template>
+
+      <ng-template [ngIf]="userType === 'admin-tec'">
+        <a class="navbar-brand" [routerLink]="'/admin/tech'">Energion</a>
+      </ng-template>
+
+      <ng-template [ngIf]="userType === 'employee'">
+        <a class="navbar-brand" [routerLink]="'/employee/home'">Energion</a>
+      </ng-template>
+    </logo>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+
+
+      <!--Consumer Header Links-->
+      <ng-template [ngIf]="userType === 'consumer' && loggedIn">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/consumer/home'" mdbRippleRadius>Home</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/consumer/new-application'" mdbRippleRadius>New Application</a>
+        </li>
+
+        <!--Update Applications Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
+            Update Application <span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary " role="menu">
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/change-name/list'">
+              Change of Name
+            </a>
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/change-load/list'">
+              Change in Load
+            </a>
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/close-connection/list'">
+              Close Connection
+            </a>
+          </div>
+        </li>
+        <!--/Update Applications Dropdown-->
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/consumer/your-applications'" mdbRippleRadius>Your Application</a>
+        </li>
+      </ng-template>
+      <!--/Consumer Header Links-->
+
+
+
+      <!--Employee Header Links-->
+      <ng-template [ngIf]="userType === 'employee'">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/employee/home'" mdbRippleRadius>Home</a>
+        </li>
+        <!--Manage Applications Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
+            Manage Applications <span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary " role="menu">
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/employee/new-applications/list'">
+              New Applications
+            </a>
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/employee/progress-applications/list'">
+              In Progress Applications
+            </a>
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/employee/priority-applications/list'">
+              Priority Applications
+            </a>
+            <a class="dropdown-item waves-light" mdbRippleRadius [routerLink]="'/employee/completed-applications/list'">
+              Completed Applications
+            </a>
+          </div>
+        </li>
+        <!--/Manage Applications Dropdown-->
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/employee/base-map'" mdbRippleRadius>Base Map</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/employee/rules-regulations'" mdbRippleRadius>Rules & Regulations</a>
+        </li>
+
+      </ng-template>
+      <!--/Employee Header Links-->
+
+
+
+      <!--Admin Header Links-->
+      <ng-template [ngIf]="userType === 'admin'">
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/admin/verify-new-applications'" mdbRippleRadius>New Applications</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/admin/verify-completed-applications'" mdbRippleRadius>Completed Applications</a>
+        </li>
+
+      </ng-template>
+
+      <ng-template [ngIf]="userType === 'admin-tec'">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/admin/tech'" mdbRippleRadius>Tech Dept</a>
+        </li>
+
+      </ng-template>
+      <!--/Admin Header Links-->
+
+
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+
+      <!--Other Links for Consumer-->
+      <ng-template [ngIf]="loggedIn && userType==='consumer' ">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/consumer-notifications'" mdbRippleRadius><i class="fa fa-bell" aria-hidden="true"></i> <sup><span class="badge blue" style="font-size: 10px; margin-left: -11px;">2</span></sup></a>
+        </li>
+
+        <!--Profile Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius><img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" height="28px" alt=" "></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-menu-right" role="menu">
+            <a class="dropdown-item waves-light" mdbRippleRadius>Profile</a>
+            <a class="dropdown-item waves-light" (click)="onSignOut();" mdbRippleRadius>Sign Out</a>
+          </div>
+        </li>
+        <!--/Profile Dropdown-->
+      </ng-template>
+      <!--/Other Links for Consumer-->
+
+      <!--Other Links for Employee-->
+      <ng-template [ngIf]="loggedIn && userType==='employee' ">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/employee/notifications'" mdbRippleRadius><i class="fa fa-bell" aria-hidden="true"></i> <sup><span class="badge blue" style="font-size: 10px; margin-left: -11px;">2</span></sup></a>
+        </li>
+
+        <!--Profile Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius><img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" height="28px" alt=" "></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-menu-right" role="menu">
+            <a class="dropdown-item waves-light" mdbRippleRadius>Profile</a>
+            <a class="dropdown-item waves-light" (click)="onSignOut();" mdbRippleRadius>Sign Out</a>
+          </div>
+        </li>
+        <!--/Profile Dropdown-->
+      </ng-template>
+      <!--/Other Links for Employee-->
+
+      <!--Other Links for Admin-->
+      <ng-template [ngIf]="loggedIn && userType==='admin' ">
+        <!--<li class="nav-item" routerLinkActive="active">-->
+          <!--<a class="nav-link waves-light" [routerLink]="'/employee/notifications'" mdbRippleRadius><i class="fa fa-bell" aria-hidden="true"></i> <sup><span class="badge blue" style="font-size: 10px; margin-left: -11px;">2</span></sup></a>-->
+        <!--</li>-->
+
+        <!--Profile Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius><img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" height="28px" alt=" "></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-menu-right" role="menu">
+            <a class="dropdown-item waves-light" mdbRippleRadius>Profile</a>
+            <a class="dropdown-item waves-light" (click)="onSignOut();" mdbRippleRadius>Sign Out</a>
+          </div>
+        </li>
+        <!--/Profile Dropdown-->
+      </ng-template>
+      <!--/Other Links for Admin-->
+
+      <!--Log In & Sign Up-->
+      <ng-template [ngIf]="!loggedIn">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/signup'" mdbRippleRadius>Sign Up</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="'/login'" mdbRippleRadius>Log In</a>
+        </li>
+      </ng-template>
+      <!--/Log In & Sign Up-->
+
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
