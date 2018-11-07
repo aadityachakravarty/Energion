@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   onLogin(loginData) {
-    return this.httpClient.post('https://api-egn.nvixion.tech/auth/login', loginData);
+    return this.httpClient.post('/api/auth/login', loginData);
   }
 
   onLogOut() {
@@ -31,11 +31,11 @@ export class LoginService {
         this.localStorage.clear().subscribe(() => {});
       }
     );
-    return this.httpClient.get('https://api-egn.nvixion.tech/auth/logout', { headers: new HttpHeaders({'x-access-token': this.localData})});
+    return this.httpClient.get('/api/auth/logout', { headers: new HttpHeaders({'x-access-token': this.localData})});
   }
 
   onSignUp(signUpData) {
-    return this.httpClient.post('https://api-egn.nvixion.tech/auth/register', signUpData);
+    return this.httpClient.post('/api/auth/register', signUpData);
   }
 
 

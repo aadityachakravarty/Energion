@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
     this.loggedIn = false;
     this.localStorage.getItem('user').subscribe(
       (userLocal) => {
-        this.httpClient.get('https://api-egn.nvixion.tech/auth/logout', {headers: new HttpHeaders({
+        this.httpClient.get('/api/auth/logout', {headers: new HttpHeaders({
             'x-access-token': userLocal.token
           })}).subscribe(
           (logout) => {

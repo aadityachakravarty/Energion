@@ -43,7 +43,7 @@ export class LogInComponent implements OnInit {
         this.tokenService.token = responseData.token;
         if (true) {
 
-          this.httpClient.get('https://api-egn.nvixion.tech/auth/status', {headers: new HttpHeaders({'x-access-token': responseData.token})}).subscribe(
+          this.httpClient.get('/api/auth/status', {headers: new HttpHeaders({'x-access-token': responseData.token})}).subscribe(
             (authStatus) => {
               const safeAuthStatus = JSON.parse(JSON.stringify(authStatus));
               console.log(safeAuthStatus);

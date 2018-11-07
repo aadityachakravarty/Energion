@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {} from '@types/googlemaps';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
@@ -139,7 +138,7 @@ this.fileName = 'Browse';
       (local) => {
         this.localUserData = local;
         console.log(local);
-        this.httpClient.post('https://api-egn.nvixion.tech/connection/new', this.newApplicationForm.value, {headers: new HttpHeaders({
+        this.httpClient.post('/api/connection/new', this.newApplicationForm.value, {headers: new HttpHeaders({
             'x-access-token': local.token
           })}).subscribe(
           (newAppData) => {

@@ -16,7 +16,7 @@ export class VerifyNewApplicationsComponent implements OnInit {
     this.localStorage.getItem('user').subscribe(
       (userLocal) => {
         console.log(userLocal);
-        this.httpClient.post('https://api-egn.nvixion.tech/employee/apps', userLocal.token, {headers: new HttpHeaders({
+        this.httpClient.post('/api/employee/apps', userLocal.token, {headers: new HttpHeaders({
             'x-access-token': userLocal.token
           })}).subscribe(
           (response) => {

@@ -26,7 +26,7 @@ export class ConsumerService {
         }
       }
     );
-    return this.httpClient.post('https://api-egn.nvixion.tech/connection/mycon', this.localData.email, {headers: new HttpHeaders({'x-access-token': this.localData.token })}).map(
+    return this.httpClient.post('/api/connection/mycon', this.localData.email, {headers: new HttpHeaders({'x-access-token': this.localData.token })}).map(
       (response) => {
         const clearResponse = JSON.parse(JSON.stringify(response));
         console.log(clearResponse);
@@ -38,7 +38,7 @@ export class ConsumerService {
   }
 
   onNewApplication(newApplicationData) {
-    return this.httpClient.post('https://api-egn.nvixion.tech/connection/new', newApplicationData, {headers: new HttpHeaders({'x-access-token': this.localData.token})});
+    return this.httpClient.post('/api/connection/new', newApplicationData, {headers: new HttpHeaders({'x-access-token': this.localData.token})});
   }
 
 

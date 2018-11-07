@@ -7,6 +7,6 @@ export class EstimateService {
   constructor(private httpClient: HttpClient) { }
 
   onEstimate(address) {
-    return this.httpClient.post('https://api-egn.nvixion.tech/matrix/est', address);
+    return this.httpClient.post('/api/matrix/est', address);
   }
 }
