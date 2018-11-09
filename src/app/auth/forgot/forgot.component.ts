@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from 'src/app/title.service';
 
 @Component({
   selector: 'app-forgot',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private title: TitleService
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Forgot Password | Energion');
   }
 
 }

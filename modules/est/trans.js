@@ -104,7 +104,11 @@ const getEstimation = (req,res) => {
             else {
                 // let smsReady = "Your estimated cost is: "+parseInt(finalEst)+" and your load-demand is: "+parseInt(rl)
                 // sendSMS(ph,smsReady)
-                res.json(final)
+                res.json({
+                  success: true,
+                  msg: 'Nodes Applicable',
+                  nodes: final
+                });
             }
           }
         })

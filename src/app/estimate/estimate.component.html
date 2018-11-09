@@ -12,14 +12,14 @@
     </header>
 
     <main role="main" class="inner cover">
-      <form>
+      <form [formGroup]="estForm" (ngSubmit)="getEstimate()">
         <div class="form-group text-center">
-          <input type="text" class="m-auto col-sm-6 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Location">
+          <input type="text" formControlName="address" class="m-auto col-sm-6 form-control" aria-describedby="location" placeholder="Enter Location">
         </div>
         <div class="form-group">
-          <input type="text" class="m-auto col-sm-6 form-control" id="exampleInputPassword1" placeholder="Capacity Required">
+          <input type="number" formControlName="capacity" class="m-auto col-sm-6 form-control" placeholder="Capacity Required">
         </div>
-        <button type="submit" class="btn btn-dark"><i class="fa fa-location-arrow"></i> Get Estimate</button>
+        <button type="submit" [disabled]="!estForm.valid" class="btn btn-dark"><i class="fa fa-location-arrow"></i> Get Estimate</button>
       </form>
     </main>
 
