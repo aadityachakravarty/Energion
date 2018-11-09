@@ -19,7 +19,10 @@
         <div class="form-group">
           <input type="number" formControlName="capacity" class="m-auto col-sm-6 form-control" placeholder="Capacity Required">
         </div>
-        <button type="submit" [disabled]="!estForm.valid" class="btn btn-dark"><i class="fa fa-location-arrow"></i> Get Estimate</button>
+        <button type="submit" [disabled]="!estForm.valid" class="btn btn-dark">
+          <i *ngIf="!loading" class="fa fa-location-arrow"></i> 
+          <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i> 
+          Get Estimate</button>
       </form>
     </main>
 

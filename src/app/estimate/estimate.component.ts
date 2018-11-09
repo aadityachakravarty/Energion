@@ -11,6 +11,7 @@ import { MapComponent } from './map/map.component';
   styleUrls: ['./estimate.component.css']
 })
 export class EstimateComponent implements OnInit {
+  loading: boolean = false;
 
   constructor(
     private title: TitleService,
@@ -25,17 +26,21 @@ export class EstimateComponent implements OnInit {
   });
 
   getEstimate() {
+    this.loading = true;
     this.http.post('/api/matrix/est', this.estForm.value).subscribe(
       (res: any) => {
         if (res.success) {
+          this.loading = false;
           const modalRef = this.modalService.open(MapComponent, { size: 'lg' });
           modalRef.componentInstance.data = res.nodes;
         }
         else {
+          this.loading = false;
           console.log(res.msg);
         }
       },
       (err) => {
+        this.loading = false;
         console.log(err);
       }
     );
