@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MapComponent } from './map/map.component';
+import { AlertTriggerService } from '../alerts/alert-trigger.service';
 
 @Component({
   selector: 'app-estimate',
@@ -17,7 +18,8 @@ export class EstimateComponent implements OnInit {
     private title: TitleService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private alert: AlertTriggerService
   ) { }
 
   estForm: FormGroup = this.fb.group({
@@ -36,7 +38,7 @@ export class EstimateComponent implements OnInit {
         }
         else {
           this.loading = false;
-          console.log(res.msg);
+          this.alert.triggerAlert(res.msg);
         }
       },
       (err) => {

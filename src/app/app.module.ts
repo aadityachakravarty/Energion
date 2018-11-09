@@ -10,6 +10,7 @@ import { SplashComponent } from './splash/splash.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { EstimateComponent } from './estimate/estimate.component';
 import { MapComponent } from './estimate/map/map.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MapComponent } from './estimate/map/map.component';
     SplashComponent,
     NotFoundComponent,
     EstimateComponent,
-    MapComponent
+    MapComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,9 @@ import { MapComponent } from './estimate/map/map.component';
   entryComponents: [
     MapComponent
   ],
-  providers: [],
+  providers: [
+    AlertsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
