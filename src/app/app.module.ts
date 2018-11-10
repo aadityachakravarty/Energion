@@ -11,6 +11,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { EstimateComponent } from './estimate/estimate.component';
 import { MapComponent } from './estimate/map/map.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { NotificationService } from './alerts/notification.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     MapComponent
   ],
   providers: [
-    AlertsComponent
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

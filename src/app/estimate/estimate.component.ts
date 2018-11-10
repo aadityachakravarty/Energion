@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MapComponent } from './map/map.component';
-import { AlertTriggerService } from '../alerts/alert-trigger.service';
+import { NotificationService } from '../alerts/notification.service';
 
 @Component({
   selector: 'app-estimate',
@@ -19,7 +19,7 @@ export class EstimateComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private modalService: NgbModal,
-    private alert: AlertTriggerService
+    private notif: NotificationService
   ) { }
 
   estForm: FormGroup = this.fb.group({
@@ -38,12 +38,12 @@ export class EstimateComponent implements OnInit {
         }
         else {
           this.loading = false;
-          this.alert.triggerAlert(res.msg);
+          this.notif.fire('warning', res.msg);
         }
       },
       (err) => {
         this.loading = false;
-        console.log(err);
+        this.notif.fire('danger', err.message);
       }
     );
   }
@@ -51,5 +51,4 @@ export class EstimateComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Get Estimate | Energion');
   }
-
 }

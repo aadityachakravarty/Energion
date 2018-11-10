@@ -1,31 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.css']
 })
-export class AlertsComponent implements OnInit {
+export class AlertsComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private notification: NotificationService
+  ) {
+    this.subscription = this.notification.getNotifications().subscribe(
+      (message) => {
+        if (message.text) {
+          this._success.next(message);
+        }
+      }
+    );
+  }
 
-  private _success = new Subject<string>();
+  private _success = new Subject<any>();
 
   staticAlertClosed = false;
+  theme: string;
   alert: string;
+  subscription: Subscription;
 
   ngOnInit(): void {
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
-    this._success.subscribe((message) => this.alert = message);
+    this._success.subscribe((message) => {
+      this.theme = message.theme;
+      this.alert = message.text;
+    });
     this._success.pipe(
-      debounceTime(5000)
+      debounceTime(3000)
     ).subscribe(() => this.alert = null);
   }
 
-  public fireAlert(msg) {
-    this._success.next(msg);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
