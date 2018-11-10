@@ -56,7 +56,7 @@ const register = (req, res) => {
                   if (config.settings.verification.email) {
                     // If emails are enabled in the configuration then send confirmation email.
                     let subject = "Energion Activation";
-                    let link = `${cblink}/api/auth/verify/${user._id}/${otp.email}`;
+                    let link = `${cblink}/auth/verify/${user._id}/${otp.email}`;
                     let message = "Thank you for registering. \n Please click on the following link to activate your account. \n " + link;
                     sendEmail(req.body.email, subject, message);
                   }

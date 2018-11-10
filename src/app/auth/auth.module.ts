@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { VerifyComponent } from './verify/verify.component';
 
 const authRoutes: Routes = [
   {
@@ -18,18 +20,25 @@ const authRoutes: Routes = [
   {
     path: 'forgot',
     component: ForgotComponent
+  },
+  {
+    path: 'verify/:user/:code',
+    component: VerifyComponent
   }
 ]
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(authRoutes)
+    RouterModule.forChild(authRoutes),
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ForgotComponent
+    ForgotComponent,
+    VerifyComponent
   ]
 })
 export class AuthModule { }

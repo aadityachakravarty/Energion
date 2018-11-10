@@ -25,7 +25,7 @@ const auth = require(__base + 'modules/auth/protect.js');
 /*-- Protected Routes --*/
 
 router.get('/status', auth, (req, res) => {
-    res.json({ "msg": 'You are logged in.', "data": req.info });
+    res.json({ success: true, "msg": 'You are logged in.', "data": req.info });
 });
 
 // router.post('/change-password', auth, require(__base + 'modules/auth/passChange.js'))

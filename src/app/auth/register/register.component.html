@@ -12,23 +12,23 @@
     </header>
   
     <main role="main" class="inner cover">
-      <form>
+      <form [formGroup]="regForm" (ngSubmit)="register()">
         <div class="form-group text-center">
-          <input type="text" class="m-auto col-sm-8 form-control" id="fullname" aria-describedby="emailHelp" placeholder="Full Name">
+          <input type="text" formControlName="fullname" class="m-auto col-sm-8 form-control" id="fullname" aria-describedby="emailHelp" placeholder="Full Name">
         </div>
         <div class="form-group">
-          <input type="text" class="m-auto col-sm-8 form-control" id="email" placeholder="Email Address">
+          <input type="text" formControlName="email" class="m-auto col-sm-8 form-control" id="email" placeholder="Email Address">
         </div>
         <div class="form-group">
-          <input type="number" class="m-auto col-sm-8 form-control" id="phone" placeholder="Phone Number">
+          <input type="number" formControlName="phone" class="m-auto col-sm-8 form-control" id="phone" placeholder="Phone Number">
         </div>
         <div class="form-group">
-          <input type="password" class="m-auto col-sm-8 form-control" id="pass" placeholder="Password">
+          <input type="password" formControlName="password" class="m-auto col-sm-8 form-control" id="pass" placeholder="Password">
         </div>
         <div class="form-group">
-          <input type="password" class="m-auto col-sm-8 form-control" id="passconfirm" placeholder="Password Confirm">
+          <input type="password" formControlName="passwordConfirm" class="m-auto col-sm-8 form-control" id="passconfirm" placeholder="Password Confirm">
         </div>
-        <button type="submit" class="btn btn-dark"><i class="fa fa-sign-in"></i> Register</button>
+        <button type="submit" [disabled]="!regForm.valid" class="btn btn-dark"><i class="fa fa-sign-in"></i> Register</button>
       </form>
     </main>
   

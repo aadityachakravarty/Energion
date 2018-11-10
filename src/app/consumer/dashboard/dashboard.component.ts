@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { TitleService } from 'src/app/title.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private title: TitleService
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Dashboard | Energion');
   }
 
+  logout() {
+    this.auth.logout();
+  }
 }
