@@ -28,7 +28,9 @@
         <div class="form-group">
           <input type="password" formControlName="passwordConfirm" class="m-auto col-sm-8 form-control" id="passconfirm" placeholder="Password Confirm">
         </div>
-        <button type="submit" [disabled]="!regForm.valid" class="btn btn-dark"><i class="fa fa-sign-in"></i> Register</button>
+        <button type="submit" [disabled]="!regForm.valid" class="btn btn-dark">
+            <i *ngIf="!loading" class="fa fa-sticky-note"></i> 
+            <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i> Register</button>
       </form>
     </main>
   

@@ -10,20 +10,26 @@
         </nav>
       </div>
     </header>
-  
+
     <main role="main" class="inner cover">
-      <form [formGroup]="forgotForm" (ngSubmit)="forgotPass()">
+      <form [formGroup]="resetForm" (ngSubmit)="reset()">
         <div class="form-group text-center">
-          <input type="text" formControlName="id" class="m-auto col-sm-8 form-control" id="forgot" aria-describedby="emailHelp" placeholder="Email Address">
+          <input type="password" formControlName="password" class="m-auto col-sm-8 form-control" id="id" aria-describedby="emailHelp"
+            placeholder="Password">
         </div>
-        <button [disabled]="!forgotForm.valid" type="submit" class="btn btn-dark">
-            <i *ngIf="!loading" class="fa fa-paper-plane"></i> 
-            <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i> Send Email</button>
+        <div class="form-group">
+          <input type="password" formControlName="passwordConfirm" class="m-auto col-sm-8 form-control" id="password"
+            placeholder="Password Confirm">
+        </div>
+        <button type="submit" [disabled]="!resetForm.valid" class="btn btn-dark">
+          <i *ngIf="!loading" class="fa fa-key"></i>
+          <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          Reset Password</button>
       </form>
     </main>
-  
+
     <footer class="mastfoot mt-auto">
-      
+
     </footer>
   </div>
 </div>

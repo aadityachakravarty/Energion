@@ -10,9 +10,9 @@ router.post('/register', require(__base + 'modules/auth/register.js'));
 
 router.post('/login', require(__base + 'modules/auth/login.js'));
 
-// router.post('/forgotpassword', require(__base + 'modules/auth/forgotPassword.js'))
+router.post('/forgot', require(__base + 'modules/auth/forgot.js').verifyEmail);
 
-// router.post('/passchangeotp', require(__base + 'modules/auth/passChangeOtp.js'))
+router.post('/reset/:id/:code', require(__base + 'modules/auth/forgot.js').changePass);
 
 /* Verification Routes */
 

@@ -14,7 +14,7 @@ export class AuthService {
     private router: Router
   ) { }
 
-  loginUser(data) {
+  loginUser(data, next?) {
     this.http.post('/api/auth/login', data).subscribe(
       (res: any) => {
         if (res.success) {
@@ -25,10 +25,16 @@ export class AuthService {
         }
         else {
           this.notif.fire('warning', res.msg);
+          if (next) {
+            next();
+          }
         }
       },
       (err) => {
         this.notif.fire('danger', err.message);
+        if (next) {
+          next();
+        }
       }
     );
   }

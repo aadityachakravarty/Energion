@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css', '../../../assets/styles/cover.css']
 })
 export class RegisterComponent implements OnInit {
+  loading: Boolean = false;
 
   constructor(
     private title: TitleService,
@@ -33,21 +34,26 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.loading = true;
     if (this.regForm.value.password != this.regForm.value.passwordConfirm) {
       this.notif.fire('danger', 'Passwords do not match.'); 
+      this.loading = false;
     }
     else {
       this.http.post('/api/auth/register', this.regForm.value).subscribe(
         (res: any) => {
           if (res.success) {
-            this.notif.fire('info', 'Please check your email.'); 
-            this.router.navigate(['/auth/login']);
+            this.notif.fire('info', 'Please check your email.');
+            this.loading = false;
+            this.router.navigate(['/']);
           }
           else {
+            this.loading = false;
             this.notif.fire('warning', res.msg);  
           }
         },
         (err) => {
+          this.loading = false;
           this.notif.fire('danger', err.message);  
         }
       );

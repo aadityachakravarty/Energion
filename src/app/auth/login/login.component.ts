@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TitleService } from 'src/app/title.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -6,9 +6,11 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../../../assets/styles/cover.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  loading: Boolean = false;
 
   constructor(
     private title: TitleService,
@@ -26,7 +28,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.loginUser(this.loginForm.value);
+    this.loading = true;
+    this.auth.loginUser(this.loginForm.value, () => {
+      this.loading = false;
+    });
+  }
+
+  ngOnDestroy() {
+    this.loading = false;
   }
 
 }

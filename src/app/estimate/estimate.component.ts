@@ -9,7 +9,7 @@ import { NotificationService } from '../alerts/notification.service';
 @Component({
   selector: 'app-estimate',
   templateUrl: './estimate.component.html',
-  styleUrls: ['./estimate.component.css']
+  styleUrls: ['./estimate.component.css', '../../assets/styles/cover.css']
 })
 export class EstimateComponent implements OnInit {
   loading: boolean = false;

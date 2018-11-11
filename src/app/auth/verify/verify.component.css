@@ -1,0 +1,7 @@
+.verified {
+    background: rgb(30, 65, 30);
+}
+
+.unverified {
+    background: rgb(128, 120, 20);
+}

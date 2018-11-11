@@ -6,9 +6,13 @@ import { NotificationService } from 'src/app/alerts/notification.service';
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.css']
+  styleUrls: ['./verify.component.css', '../../../assets/styles/cover.css']
 })
 export class VerifyComponent implements OnInit {
+
+  hasVerified = false;
+  verifyMsg = 'Please wait.';
+  verifyBg = 'unverified';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,17 +27,16 @@ export class VerifyComponent implements OnInit {
     this.http.get(`/api/auth/verify/${this.snap.user}/${this.snap.code}`).subscribe(
       (res: any) => {
         if (res.success) {
-          this.notif.fire('success', 'Account Verified.');
-          this.router.navigate(['/auth/login']);
+          this.hasVerified = true;
+          this.verifyBg = 'verified';
+          this.verifyMsg = 'Account Verified.';
         }
         else {
           this.notif.fire('warning', res.msg);
-          this.router.navigate(['/auth/login']);
         }
       },
       (err) => {
         this.notif.fire('danger', err.message);
-        this.router.navigate(['/auth/login']);
       }
     )
   }

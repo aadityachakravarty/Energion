@@ -4,7 +4,7 @@ import { TitleService } from '../title.service';
 @Component({
   selector: 'app-splash',
   templateUrl: './splash.component.html',
-  styleUrls: ['./splash.component.css']
+  styleUrls: ['./splash.component.css', '../../assets/styles/cover.css']
 })
 export class SplashComponent implements OnInit {
 

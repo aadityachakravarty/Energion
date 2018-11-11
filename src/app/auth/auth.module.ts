@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { VerifyComponent } from './verify/verify.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 const authRoutes: Routes = [
   {
@@ -24,6 +25,10 @@ const authRoutes: Routes = [
   {
     path: 'verify/:user/:code',
     component: VerifyComponent
+  },
+  {
+    path: 'reset-pass/:user/:code',
+    component: ResetPassComponent
   }
 ]
 
@@ -38,7 +43,8 @@ const authRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
-    VerifyComponent
+    VerifyComponent,
+    ResetPassComponent
   ]
 })
 export class AuthModule { }
