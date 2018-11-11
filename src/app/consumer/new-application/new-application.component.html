@@ -1,144 +1,179 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Dashboard</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group mr-2">
-      <button class="btn btn-sm btn-outline-secondary">Share</button>
-      <button class="btn btn-sm btn-outline-secondary">Export</button>
+  <h1 class="h2">New Application</h1>
+</div>
+<form [formGroup]="newApplicationForm">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="md-form">
+        <input type="text" id="applicantName" formControlName="applicantName" class="form-control" mdbActive>
+        <label for="applicantName">Applicant's Name</label>
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="fatherName_husbandName" formControlName="fatherName_husbandName" class="form-control"
+          mdbActive>
+        <label for="fatherName_husbandName">Father's Name/ Husband's Name</label>
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="aadharNumber" formControlName="aadharNumber" class="form-control" mdbActive>
+        <label for="aadharNumber">Aadhar Number</label>
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="mobileNumber" formControlName="mobileNumber" class="form-control" mdbActive>
+        <label for="mobileNumber">Mobile Number</label>
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="email" formControlName="email" class="form-control" mdbActive>
+        <label for="email">E-mail</label>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <!--Permanent Address Dropdown-->
+        <div class="col-sm-6">
+          <p>Permanent Adderess</p>
+        </div>
+        <div class="col-sm-6">
+          <div class="btn-group btn-block" dropdown>
+            <button dropdownToggle type="button" class="btn btn-block btn-primary btn-md dropdown-toggle waves-light"
+              >
+              hi
+            </button>
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item" >Hi</a>
+            </div>
+          </div>
+        </div>
+        <!--/Permanent Address Dropdown-->
+      </div>
+
     </div>
-    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-      <span data-feather="calendar"></span>
-      This week
-    </button>
+
+    <div class="col-sm-6">
+
+      <div class="md-form">
+        <textarea mdbActive type="text" id="connectionAddress" formControlName="connectionAddress"
+          class="md-textarea"></textarea>
+        <label for="connectionAddress">Connection Address</label>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <p>Press OK to Confirm Connection Address.</p>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-md btn-primary waves-light" >OK</button>
+        </div>
+      </div>
+
+      <br>
+      <div class="md-form">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>Connection Address Land Document</p>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="connectionAddressLandDocument" formControlName="connectionAddressLandDocument"
+                 #file>
+              <label class="btn btn-md btn-primary" for="connectionAddressLandDocument">hi</label>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="loadDemand" formControlName="loadDemand" class="form-control" mdbActive>
+        <label for="loadDemand">Load Demand</label>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <!--Connection Category Dropdown-->
+        <div class="col-sm-6">
+          <p>Connection Category</p>
+        </div>
+        <div class="col-sm-5">
+          <div class="btn-group btn-block" dropdown>
+            <button dropdownToggle type="button" class="btn btn-block btn-primary btn-md dropdown-toggle waves-light">
+
+            </button>
+
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item">Domestic Supply
+                (DS)</a>
+              <a class="dropdown-item">Non Domestic
+                Supply (NDS)</a>
+              <a class="dropdown-item">Industrial</a>
+            </div>
+          </div>
+        </div>
+        <!--/Connection Category Dropdown-->
+      </div>
+
+      <br>
+
+      <div class="row">
+        <!--Connection Type Dropdown-->
+        <div class="col-sm-6">
+          <p>Connection Type</p>
+        </div>
+        <div class="col-sm-5">
+          <div class="btn-group btn-block" dropdown>
+            <button dropdownToggle type="button" class="btn btn-block btn-primary btn-md dropdown-toggle waves-light">
+              hi
+            </button>
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item">Permanent</a>
+              <a class="dropdown-item">Temporary</a>
+            </div>
+          </div>
+        </div>
+        <!--/Connection Type Dropdown-->
+
+      </div>
+
+      <br>
+
+      <div class="row">
+        <!--Voltage Supply Dropdown-->
+        <div class="col-sm-6">
+          <p>Voltage Supply</p>
+        </div>
+        <div class="col-sm-5">
+          <div class="btn-group btn-block" dropdown>
+            <button dropdownToggle type="button" class="btn btn-block btn-primary btn-md dropdown-toggle waves-light">
+              hi
+            </button>
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item" >1 Phase</a>
+              <a class="dropdown-item" >3 Phase</a>
+              <a class="dropdown-item" >11 KV</a>
+            </div>
+          </div>
+        </div>
+        <!--/Voltage Supply Dropdown-->
+      </div>
+    </div>
+
   </div>
-</div>
 
-<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+  <br>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="col-sm-5 offset-sm-3">
+      <button type="submit" class="btn btn-md btn-block btn-success waves-light" data-toggle="modal" data-target="#basicExample">Success</button>
+    </div>
+  </div>
 
-<h2>Section title</h2>
-<div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Header</th>
-        <th>Header</th>
-        <th>Header</th>
-        <th>Header</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1,001</td>
-        <td>Lorem</td>
-        <td>ipsum</td>
-        <td>dolor</td>
-        <td>sit</td>
-      </tr>
-      <tr>
-        <td>1,002</td>
-        <td>amet</td>
-        <td>consectetur</td>
-        <td>adipiscing</td>
-        <td>elit</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>Integer</td>
-        <td>nec</td>
-        <td>odio</td>
-        <td>Praesent</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>libero</td>
-        <td>Sed</td>
-        <td>cursus</td>
-        <td>ante</td>
-      </tr>
-      <tr>
-        <td>1,004</td>
-        <td>dapibus</td>
-        <td>diam</td>
-        <td>Sed</td>
-        <td>nisi</td>
-      </tr>
-      <tr>
-        <td>1,005</td>
-        <td>Nulla</td>
-        <td>quis</td>
-        <td>sem</td>
-        <td>at</td>
-      </tr>
-      <tr>
-        <td>1,006</td>
-        <td>nibh</td>
-        <td>elementum</td>
-        <td>imperdiet</td>
-        <td>Duis</td>
-      </tr>
-      <tr>
-        <td>1,007</td>
-        <td>sagittis</td>
-        <td>ipsum</td>
-        <td>Praesent</td>
-        <td>mauris</td>
-      </tr>
-      <tr>
-        <td>1,008</td>
-        <td>Fusce</td>
-        <td>nec</td>
-        <td>tellus</td>
-        <td>sed</td>
-      </tr>
-      <tr>
-        <td>1,009</td>
-        <td>augue</td>
-        <td>semper</td>
-        <td>porta</td>
-        <td>Mauris</td>
-      </tr>
-      <tr>
-        <td>1,010</td>
-        <td>massa</td>
-        <td>Vestibulum</td>
-        <td>lacinia</td>
-        <td>arcu</td>
-      </tr>
-      <tr>
-        <td>1,011</td>
-        <td>eget</td>
-        <td>nulla</td>
-        <td>Class</td>
-        <td>aptent</td>
-      </tr>
-      <tr>
-        <td>1,012</td>
-        <td>taciti</td>
-        <td>sociosqu</td>
-        <td>ad</td>
-        <td>litora</td>
-      </tr>
-      <tr>
-        <td>1,013</td>
-        <td>torquent</td>
-        <td>per</td>
-        <td>conubia</td>
-        <td>nostra</td>
-      </tr>
-      <tr>
-        <td>1,014</td>
-        <td>per</td>
-        <td>inceptos</td>
-        <td>himenaeos</td>
-        <td>Curabitur</td>
-      </tr>
-      <tr>
-        <td>1,015</td>
-        <td>sodales</td>
-        <td>ligula</td>
-        <td>in</td>
-        <td>libero</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</form>

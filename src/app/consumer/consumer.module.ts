@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewApplicationComponent } from './new-application/new-application.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { ViewApplicationsComponent } from './view-applications/view-applications.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const conRoutes: Routes = [
   {
@@ -12,8 +15,17 @@ const conRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        component: ProfileComponent
+      },
+      {
         path: 'new-application',
         component: NewApplicationComponent
+      },
+      {
+        path: 'view-applications',
+        component: ViewApplicationsComponent
       }
     ]
   },
@@ -22,11 +34,15 @@ const conRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(conRoutes)
+    RouterModule.forChild(conRoutes),
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     DashboardComponent,
-    NewApplicationComponent
+    NewApplicationComponent,
+    ProfileComponent,
+    ViewApplicationsComponent
   ]
 })
 export class ConsumerModule { }

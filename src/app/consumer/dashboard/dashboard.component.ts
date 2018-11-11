@@ -9,6 +9,8 @@ import { TitleService } from 'src/app/title.service';
 })
 export class DashboardComponent implements OnInit {
 
+  profile: any = JSON.parse(localStorage.profile);
+
   constructor(
     private auth: AuthService,
     private title: TitleService
