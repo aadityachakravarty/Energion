@@ -1,15 +1,18 @@
-const mongoose = require('mongoose')
+const Consumer = require(__base + 'models/consumer.js');
 
-const Consumer = require(__base + 'models/consumer.js').consumer
-
-const myCon = (req,res) => {
-  Consumer.find({"consumerDetails.emailAddress":req.body.email}, (err,data) => {
-    if(err){
-      console.log(err);
-      res.status(500).json(err);
+const myCon = (req, res) => {
+  Consumer.find({ "submitted": req.info.id }, (err, data) => {
+    if (err) {
+      res.json({
+        success: false,
+        msg: err.message
+      });
     }
     else {
-        res.send(data);
+      res.json({
+        success: true,
+        data: data
+      });
     }
   });
 }
