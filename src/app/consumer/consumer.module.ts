@@ -7,6 +7,9 @@ import { AuthGuard } from '../auth/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewApplicationsComponent } from './view-applications/view-applications.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TransferApplicationComponent } from './transfer-application/transfer-application.component';
+import { ClosureApplicationComponent } from './closure-application/closure-application.component';
+import { DeleteApplicationComponent } from './delete-application/delete-application.component';
 
 const conRoutes: Routes = [
   {
@@ -42,7 +45,15 @@ const conRoutes: Routes = [
     DashboardComponent,
     NewApplicationComponent,
     ProfileComponent,
-    ViewApplicationsComponent
+    ViewApplicationsComponent,
+    TransferApplicationComponent,
+    ClosureApplicationComponent,
+    DeleteApplicationComponent
+  ],
+  entryComponents: [
+    TransferApplicationComponent,
+    ClosureApplicationComponent,
+    DeleteApplicationComponent
   ]
 })
 export class ConsumerModule { }

@@ -18,9 +18,9 @@ router.post('/track', auth, require('../modules/forms/track'));
 router.put('/transfer', auth, require(__base + 'modules/forms/transferCon.js'));
 
 //for closure of connection
-router.patch('/closure', auth, require(__base + 'modules/forms/closeCon.js'));
+router.post('/closure', auth, require(__base + 'modules/forms/closeCon.js'));
 
 //for deleting connection
-router.delete('/delete', auth, require(__base + 'modules/forms/deleteCon.js'));
+router.post('/delete', auth, require(__base + 'modules/forms/deleteCon.js'));
 
 module.exports = router;

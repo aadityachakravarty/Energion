@@ -12,6 +12,7 @@ import { EstimateComponent } from './estimate/estimate.component';
 import { MapComponent } from './estimate/map/map.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { NotificationService } from './alerts/notification.service';
+import { ConsumerModule } from './consumer/consumer.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NotificationService } from './alerts/notification.service';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ConsumerModule
   ],
   entryComponents: [
     MapComponent

@@ -6,10 +6,8 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Application ID</th>
         <th>Name</th>
         <th>Father / Husband Name</th>
-        <th>Permanent Address</th>
         <th>Connection Category</th>
         <th>Connection Type</th>
         <th>Load Demand</th>
@@ -20,10 +18,8 @@
     <tbody>
       <tr *ngFor="let c of data; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ c.ApplicationID }}</td>
         <td>{{ c.consumerDetails.applicantName }}</td>
         <td>{{ c.consumerDetails.father_husbandName }}</td>
-        <td>{{ c.consumerDetails.connectionAddress }}</td>
         <td>{{ c.consumerDetails.connectionCategory }}</td>
         <td>{{ c.consumerDetails.connectionType }}</td>
         <td>{{ c.consumerDetails.loadDemand }}</td>
@@ -32,7 +28,16 @@
           <i *ngIf="c.consumerDetails.statusOfApplication" title="Accepted" class="fa fa-check"></i>
         </td>
         <td class="text-center">
-          <i (click)="deleteReq(c._id)" class="fa fa-trash text-danger" title="Delete Request"></i>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" (click)="transferCon(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-secondary"><i
+                  class="fa fa-refresh"></i></button>
+              <button type="button" (click)="closureCon(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-secondary"><i
+                  class="fa fa-times"></i></button>
+              <button type="button" (click)="deleteReq(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-danger"><i
+                  class="fa fa-trash"></i></button>
+            </div>
+          </div>
         </td>
       </tr>
     </tbody>

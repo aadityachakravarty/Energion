@@ -1,42 +1,35 @@
-const mongoose = require('mongoose')
+const consumer = require(__base + 'models/consumer.js');
 
-const Consumer = require(__base + 'models/consumer.js').consumer
-
-const closureCon = (req,res) => {
-  Consumer.findOneAndUpdate({"ApplicationID":req.body.applicationID},{
-      $set:{
-        "closureOfConnection" : {
-                "lastBillNumber" : req.body.billNumber,
-                "lastBillAmount" : req.body.billAmount,
-                "reasonOfClosure" : req.body.reason,
-                "isClosureApproved" : false
+const transferCon = (req, res) => {
+  if (!req.body.id || !req.body.reason) {
+    res.json({
+      success: false,
+      msg: 'Please check the inputs.'
+    });
+  }
+  else {
+    consumer.findOneAndUpdate({ '_id': req.body.id }, {
+      $set: {
+        'closureOfConnection': {
+          'reasonOfClosure': req.body.reason,
+          'isClosureApproved': false
         }
       },
-    }, (err,data) => {
-    if(err){
-      console.log(err);
-      res.status(500).json(err);
-    }
-    else {
-      if(!data){
-        res.status(404).json({message:"no Entry Found"});
-      }
-
-      else {
-        data.save((err,updatedData)=>{
-          Consumer.findOne({"ApplicationID":req.body.applicationID}, (err, data) => {
-            if(err){
-              console.log(err)
-              res.status(500).send(err)
-            }
-            else{
-              res.status(200).json(data)
-            }
-          })
+    }, (err) => {
+      if (err) {
+        res.json({
+          success: false,
+          msg: err.message
         });
-      }// nested else finish
-    }
-  });
+      }
+      else {
+        res.json({
+          success: true,
+          msg: 'Request Submitted.'
+        });
+      }
+    });
+  }
 }
 
-module.exports = closureCon
+module.exports = transferCon

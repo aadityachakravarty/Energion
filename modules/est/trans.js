@@ -49,7 +49,7 @@ const getEstimation = (req, res) => {
             else {
               data.forEach((e) => {
                 // We are checking the distance between 2 coordinates.
-                if (rad(co.lat, co.lng, e.location.lattitude, e.location.longitude) <= 100) {
+                if (rad(co.lat, co.lng, e.location.lattitude, e.location.longitude) <= 2) {
                   // Now we check if the selected node can accomodate the actual load. Else shift the node.
                   if (e.currentCapacity + parseInt(rl) <= (70 / 100) * e.maxCapacity) {
                     allowedNodes.push(e);
@@ -68,7 +68,7 @@ const getEstimation = (req, res) => {
               if (allowedNodes.length == 0) {
                 res.json({
                   success: false,
-                  msg: "No nodes found within 1KM.",
+                  msg: "No nodes found within 2KM.",
                   code: ec
                 })
               }
@@ -83,7 +83,7 @@ const getEstimation = (req, res) => {
                 // Now, we shall check for all other possible minimum nodes for the given capacity.
                 allowedNodes.forEach((elem) => {
                   let currDist = rad(co.lat, co.lng, elem.location.lattitude, elem.location.longitude)
-                  let currEst = 2500 + (elem.rate * currDist * 1000)
+                  let currEst = 1000 + (elem.rate * currDist * 1000)
 
                   if (currEst <= initEst) {
                     minNode = elem

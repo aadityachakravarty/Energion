@@ -1,45 +1,55 @@
-const mongoose = require('mongoose')
+const consumer = require(__base + 'models/consumer.js');
 
-const Consumer = require(__base + 'models/consumer.js').consumer
-
-const transferCon = (req,res) => {
-  let updateOps = {}
-  for (let key of Object.keys(req.body)) {
-    updateOps[key] = req.body[key]
+const transferCon = (req, res) => {
+  if (!req.body.email || !req.body.id) {
+    res.json({
+      success: false,
+      msg: 'Please check the inputs.'
+    });
   }
-  Consumer.findOneAndUpdate({"ApplicationID":req.body.applicationID},{
-      $set:{
-        "transferApplication":{
-          "transferringToName" : req.body.transferName,
-          "newOwnerAadharNumber" : req.body.aadhar,
-          "address" : req.body.address,
-          "isTransferCompleted" : false
-        }
-      },
-    }, (err,data) => {
-    if(err){
-      console.log(err);
-      res.status(500).json(err);
-    }
-    else {
-      if(!data){
-        res.status(404).json({message:"no Entry Found"});
-      }
-
-      else {
-        data.save((err,updatedData)=>{
-          if(err) {
-            console.log(err);
-            res.status(500).send("Update failed");
-          }
-          else {
-            res.status(200).json(updatedData);
-            //console.log(updatedData);
-          }
+  else {
+    consumer.findOne({ 'consumerDetails.emailAddress': req.body.email }, (err, user) => {
+      if (err) {
+        res.json({
+          success: false,
+          msg: err.message
         });
-      }// nested else finish
-    }
-  });
+      }
+      else {
+        if (!user) {
+          res.json({
+            success: false,
+            msg: 'No recipient found.'
+          })
+        }
+        else {
+          consumer.findOneAndUpdate({ '_id': req.body.id }, {
+            $set: {
+              'transferApplication': {
+                'transferringToName': user.consumerDetails.applicantName,
+                'newOwnerAadharNumber': user.consumerDetails.aadharNumber,
+                'address': req.body.address || user.consumerDetails.permanentAddress,
+                'isTransferCompleted': false
+              }
+            },
+          }, (err) => {
+            if (err) {
+              res.json({
+                success: false,
+                msg: err.message
+              });
+            }
+            else {
+              res.json({
+                success: true,
+                msg: 'Request Submitted.'
+              });
+            }
+          });
+        }
+      }
+    });
+  }
 }
 
 module.exports = transferCon
