@@ -9,10 +9,13 @@ const applications = (req, res) => {
       });
     }
     else {
-      let names = data.map((e) => e.consumerDetails.applicantName);
+      let dataFilter = data.map((e) => ({
+        name: e.consumerDetails.applicantName,
+        address: e.consumerDetails.connectionAddress
+      }));
       res.json({
         success: true,
-        upcoming: names
+        upcoming: dataFilter
       });
     }
   });
