@@ -1,15 +1,19 @@
-const mongoose = require('mongoose')
+const consumer = require(__base + 'models/consumer.js');
 
-const Consumer = require(__base + 'models/consumer.js').consumer
-
-const applications = (req,res) => {
-  Consumer.find({}, (err,data) => {
-    if(err){
-      console.log(err);
-      res.status(500).json(err);
+const applications = (req, res) => {
+  consumer.find({}, (err, data) => {
+    if (err) {
+      res.json({
+        success: false,
+        msg: err.message
+      });
     }
     else {
-        res.send(data);
+      let names = data.map((e) => e.consumerDetails.applicantName);
+      res.json({
+        success: true,
+        upcoming: names
+      });
     }
   });
 }
