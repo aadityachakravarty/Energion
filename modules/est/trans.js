@@ -22,7 +22,7 @@ const getEstimation = (req, res) => {
         })
       }
       else {
-        if (geo.results.length == 0) {
+        if (geo.length == 0) {
           res.json({
             success: false,
             msg: 'Address not found.'
@@ -30,7 +30,7 @@ const getEstimation = (req, res) => {
         }
         else {
           // Since we are using the 'let' word instead of var or const, we can use the co name again.
-          let co = geo.results[0].geometry.location
+          let co = geo[0];
           // Requested Load
           let rl = req.body.capacity;
           // Phone Number
@@ -49,7 +49,7 @@ const getEstimation = (req, res) => {
             else {
               data.forEach((e) => {
                 // We are checking the distance between 2 coordinates.
-                if (rad(co.lat, co.lng, e.location.lattitude, e.location.longitude) <= 2) {
+                if (rad(co.lat, co.lon, e.location.lattitude, e.location.longitude) <= 5) {
                   // Now we check if the selected node can accomodate the actual load. Else shift the node.
                   if (e.currentCapacity + parseInt(rl) <= (70 / 100) * e.maxCapacity) {
                     allowedNodes.push(e);
@@ -68,7 +68,7 @@ const getEstimation = (req, res) => {
               if (allowedNodes.length == 0) {
                 res.json({
                   success: false,
-                  msg: "No nodes found within 2KM.",
+                  msg: "No nodes found within 5KM.",
                   code: ec
                 })
               }
@@ -77,12 +77,12 @@ const getEstimation = (req, res) => {
                 let minNode = allowedNodes[0]
                 let finalEst;
 
-                let initDist = rad(co.lat, co.lng, minNode.location.lattitude, minNode.location.longitude)
+                let initDist = rad(co.lat, co.lon, minNode.location.lattitude, minNode.location.longitude)
                 let initEst = 2500 + (minNode.rate * initDist * 1000)
 
                 // Now, we shall check for all other possible minimum nodes for the given capacity.
                 allowedNodes.forEach((elem) => {
-                  let currDist = rad(co.lat, co.lng, elem.location.lattitude, elem.location.longitude)
+                  let currDist = rad(co.lat, co.lon, elem.location.lattitude, elem.location.longitude)
                   let currEst = 1000 + (elem.rate * currDist * 1000)
 
                   if (currEst <= initEst) {
@@ -99,7 +99,7 @@ const getEstimation = (req, res) => {
                     },
                     "customer": {
                       "lat": co.lat,
-                      "lng": co.lng
+                      "lng": co.lon
                     }
                   },
                   "distance": Number.parseFloat(initDist).toFixed(2),
