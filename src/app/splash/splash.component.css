@@ -1,4 +1,21 @@
 #page {
-  background: url('https://i.imgur.com/yVTnI6d.jpg') no-repeat;
-  background-size: cover;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff8d1c+0,ffffff+38,ffffff+63,2df70e+100 */
+  background: #ff8d1c; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ff8d1c 0%, #ffffff 38%, #ffffff 63%, #2df70e 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ff8d1c 0%,#ffffff 38%,#ffffff 63%,#2df70e 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ff8d1c 0%,#ffffff 38%,#ffffff 63%,#2df70e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8d1c', endColorstr='#2df70e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.nav-link {
+  color: #333 !important;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: #333 !important;
+}
+
+.nav-masthead .active {
+  border-bottom-color: #333 !important;
 }
