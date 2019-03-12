@@ -1,8 +1,12 @@
 # Energion
 
-## Introduction
+[Endpoints](ENDPOINTS.md)
 
-> This is the GIS-GPS based connection estimation generation project deployed in conjuction with the specifics defined in the respective SRS document to allow for the same. Also, this is the second version.
+[Requirements](REQUIREMENTS.md)
+
+## Description
+
+> This is a connection estimation project using geo coding API and works on dummy data arount piet panipat college. This project aims to allow e-filing for new electric connections as well as provides a simpler interface to do all the connection related actions (basically, CRUD). Also, the main highlight of this project is the connection wiring cost estimation mechanism which finds the nearest node and then calculates a pre-defined cost.
 
 ## Installation and Running
 
@@ -12,53 +16,16 @@
 
 > npm start
 
-## Routes
-
-### Authentication Routes
-
-> Url: /api/auth
-
-Method | Route Address | Input Parameters | Output JSON Expectation
---- | --- | --- | ---
-POST | /register | fullName, userName, email, phone, passEnter, passConfirm | Success/Error Message
-GET | /verify/:username/:code | None | Success/Error Message
-POST | /login | username, password | Success Message -> Token or Error Message
-GET | /logout | token (Header: x-access-token) or Params | Success/Error Message
-POST | /change-password | token, oldPassword, newPassword | Success/Error Message
-GET | /status | token | Success/Error Message
-
-### Estimation Routes
-
-> Url: /api/matrix
-
-Method | Route Address | Input Parameters | Output JSON Expectation
---- | --- | --- | ---
-POST | /est | address, capacity | Rate Object
-
-### Connection Routes
-
-> Url: /api/connection
-
-Method | Route Address | Input Parameters | Output JSON Expectation
---- | --- | --- | ---
-POST | /new | applicantName, father_husbandName, connectionAddress, contactNumber, emailAddress, permanentAddress, aadharNumber, connectionCategory, connectionType, loadDemand, voltageSupply | Success/Error Message
-POST | /transfer | applicationID,transferName,aadhar,address | updatedData Object / Error Message
-POST | /closure | applicationID,billNumber,billAmount,reason | updatedData Object / Error Message
-POST | /delete | applicationID | Success /Error Message
-POST | /update | applicationID, applicantName | data/Error
-POST | /mycon | email | data/Error
-
-
 ## To-do List
 
-* Dashboards
+### Backend Work
 
-* Apps
+> Admin APIs.
 
-* Load Balancing
+> Lineman APIs.
 
-* Production Setup
+### Frontend Work
 
-## Application URL
+> User Dashboard UI change.
 
-> https://energion.metaxyt.cf
+> Admin Dashboard.

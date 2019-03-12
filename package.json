@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node system/server.js",
-    "postinstall": "ng build --prod",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~7.2.8",
     "@angular/router": "~7.2.8",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
-    "aws-sdk": "^2.351.0",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",

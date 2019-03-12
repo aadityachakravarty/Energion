@@ -16,7 +16,10 @@ mongoose.connect(config.setup.database, { useNewUrlParser: true }, (err) => {
   else {
     console.log('Database Connected.');
   }
-})
+});
+
+// EnsureIndex Fallback.
+mongoose.set('useCreateIndex', true);
 
 /* Server Setup */
 server.listen(port, () => {
