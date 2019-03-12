@@ -39,6 +39,7 @@ const register = (req, res) => {
                 fullname: req.body.fullname,
                 email: req.body.email,
                 phone: req.body.phone,
+                level: req.body.level || 1,
                 password: pass,
                 code: {
                   email: otp.email,

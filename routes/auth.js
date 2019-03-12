@@ -1,9 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const jwt = require('jsonwebtoken')
-const config = require(__base + 'system/config.json')
-
 /* Page Routes */
 
 router.post('/register', require(__base + 'modules/auth/register.js'));

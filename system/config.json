@@ -16,16 +16,8 @@
             "pass": "dummy123!"
         },
         "api": {
-            "locationIQ": "5e78ca7b06237a"
-        },
-        "oauth": {
-            "google": {
-                "clientID": "148816689538-as5vjgml277k0ogrtl9jmdsvg9823qfc.apps.googleusercontent.com",
-                "clientSecret": "z1fJYeXaHztQ7ZPzyNuZaXDd"
-            },
-            "amazon": {
-                
-            }
+            "locationIQ": "5e78ca7b06237a",
+            "geoVar": "AIzaSyBVwLlqUXqoRrxaqqaF4TQQGpHy4smVKzk"
         }
     },
     "setup": {

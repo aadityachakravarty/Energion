@@ -1,11 +1,11 @@
 const request = require('request')
 const config = require(__base + 'system/config.json')
 
-const apiKey = config.details.api.locationIQ
+const apiKey = config.details.api.geoVar
 
 const geoMatrix = (address, next) => {
     let options = {
-        url: `https://eu1.locationiq.com/v1/search.php?key=${apiKey}&q=${address}&format=json`,
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`,
         headers: {
             'User-Agent': 'request'
         }

@@ -1,5 +1,7 @@
 # Energion
 
+## Links
+
 [Endpoints](ENDPOINTS.md)
 
 [Requirements](REQUIREMENTS.md)
@@ -20,12 +22,18 @@
 
 ### Backend Work
 
-> Admin APIs.
+> All Admin APIs.
 
-> Lineman APIs.
+> All Lineman APIs.
 
 ### Frontend Work
 
 > User Dashboard UI change.
 
 > Admin Dashboard.
+
+## What's done
+
+> Admin Auth API with access levels.
+
+> Reworked for google geocode api.

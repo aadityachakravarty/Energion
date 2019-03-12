@@ -29,7 +29,7 @@ export class EstimateComponent implements OnInit {
 
   getEstimate() {
     this.loading = true;
-    this.http.post('/api/matrix/est', this.estForm.value).subscribe(
+    this.http.post('/api/estimate', this.estForm.value).subscribe(
       (res: any) => {
         if (res.success) {
           this.loading = false;

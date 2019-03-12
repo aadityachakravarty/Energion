@@ -1,8 +1,8 @@
-#Routes
+# Routes
 
 ## Authentication Routes
 
-* URL: /api/auth
+> URL: /api/auth
 
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
