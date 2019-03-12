@@ -19,8 +19,13 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.setItem('token', res.token);
-          this.getProfile(() => {
-            this.router.navigate(['/consumer']);
+          this.getProfile((admin) => {
+            if (admin) {
+              this.router.navigate(['/admin']);
+            }
+            else {
+              this.router.navigate(['/consumer']);
+            }
           });
         }
         else {
@@ -44,7 +49,7 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.setItem('profile', JSON.stringify(res.data));
-          next();
+          next(res.data.admin);
         }
         else {
           this.notif.fire('warning', res.msg);
