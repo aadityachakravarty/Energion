@@ -20,13 +20,16 @@ const newCon = (req, res) => {
             "voltageSupply": req.body.voltageSupply,
             "statusOfApplication": false
         },
-        "applicationTracking": {
-            "userSubmitted": true,
-            "veriFinance": false,
-            "veriFinErr": false,
-            "techPro": false,
-            "emPro": false,
-            "completed": false
+        "tracking": {
+            "lineman": {
+                "allotted": false,
+                "status": 0
+            },
+            "verification": {
+                "user": false,
+                "finance": false,
+                "availability": false
+            }
         }
     })
     newApplication.save((error) => {
@@ -39,7 +42,7 @@ const newCon = (req, res) => {
         else {
             res.json({
                 success: true,
-                msg: "New connection added successfully"
+                msg: "New connection request added successfully"
             });
         }
     });

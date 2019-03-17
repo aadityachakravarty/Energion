@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+// Application Status Help 
+
+// 0 -> Not Approved
+// 1 -> Approved 
+// 2 -> Completed
+// -1 -> Rejected
+
 // Consumer SCHEMA
 const consumerSchema = new Schema({
     //Array of Object for New Application
@@ -41,15 +49,22 @@ const consumerSchema = new Schema({
         "reasonOfClosure": String,
         "isClosureApproved": Boolean
     },
-    "applicationTracking": {
-        "userSubmitted": Boolean,
-        "veriFinance": Boolean,
-        "veriErr": Boolean,
-        "techPro": Boolean,
-        "emPro": Boolean,
-        "completed": Boolean,
-        "num": 0
+    "tracking": {
+        "lineman": {
+            "allotted": Boolean,
+            "id": mongoose.Schema.Types.ObjectId,
+            "status": {
+                type: Number,
+                default: 0
+            }
+        },
+        "verification": {
+            "user": Boolean,
+            "finance": Boolean,
+            "availability": Boolean,
+            "ifCancelReason": String
+        }
     }
-})
+});
 
 module.exports = mongoose.model('consumer', consumerSchema);

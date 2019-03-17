@@ -9,9 +9,9 @@ const admin = (req, res, next) => {
         next();
     }
     else {
-        res.json({
+        res.status(401).json({
             success: false,
-            msg: 'Access level not sufficient.'
+            msg: 'Unauthorized Request.'
         });
     }
 }
@@ -19,5 +19,17 @@ const admin = (req, res, next) => {
 router.get('/status', auth, admin, (req, res) => {
     res.json({ success: true, "msg": 'You are an admin.', "data": req.info });
 });
+
+router.get('/getApplications', auth, admin, require(__base + 'modules/admin/applications.js'));
+
+router.post('/approveApplication', auth, admin, require(__base + 'modules/admin/approve.js'));
+
+router.post('/rejectApplication', auth, admin, require(__base + 'modules/admin/reject.js'));
+
+router.get('/getLineman', auth, admin, require(__base + 'modules/admin/lineman.js'));
+
+router.get('/getUsers', auth, admin, require(__base + 'modules/admin/userlist.js'));
+
+router.post('/modifyAccess', auth, admin, require(__base + 'modules/admin/accesslevel.js'));
 
 module.exports = router;

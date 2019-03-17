@@ -31,3 +31,18 @@ POST | /closure | applicationID,billNumber,billAmount,reason | updatedData Objec
 POST | /delete | applicationID | Success /Error Message
 POST | /update | applicationID, applicantName | data/Error
 POST | /mycon | email | data/Error
+
+## Admin Routes
+
+> URL: /api/admin
+
+* Note: Only specific accounts with acces level as defined can access these endpoints.
+
+Method | Route Address | Input Parameters | Output JSON Expectation
+--- | --- | --- | ---
+GET | /getApplications | filter in query ( pending, accepted, rejected) | Success / Error Message
+POST | /approveApplication | id, lineman | Success / Error Message
+POST | /rejectApplication | id, type (user, finance, availability), reason | Success / Error Message
+GET | /getLineman | None | Success / Error Message
+GET | /getUsers | None | Success / Error Message
+POST | /modifyAccess | id, level | Success / Error Message
