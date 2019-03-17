@@ -22,6 +22,7 @@ const getEstimation = (req, res) => {
         })
       }
       else {
+        console.log(req.headers['referer']);
         if (geo.results.length == 0) {
           res.json({
             success: false,
@@ -29,7 +30,6 @@ const getEstimation = (req, res) => {
           })
         }
         else {
-          // Since we are using the 'let' word instead of var or const, we can use the co name again.
           let co = geo.results[0].geometry.location
           // Requested Load
           let rl = req.body.capacity;
