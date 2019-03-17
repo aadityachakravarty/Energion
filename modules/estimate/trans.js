@@ -22,7 +22,6 @@ const getEstimation = (req, res) => {
         })
       }
       else {
-        console.log(req.headers['referer']);
         if (geo.results.length == 0) {
           res.json({
             success: false,

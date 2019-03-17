@@ -23,6 +23,8 @@ POST | /api/estimate | address, capacity | Rate Object
 
 > URL: /api/connection
 
+> Access: 1
+
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
 POST | /new | applicantName, father_husbandName, connectionAddress, contactNumber, emailAddress, permanentAddress, aadharNumber, connectionCategory, connectionType, loadDemand, voltageSupply | Success/Error Message
@@ -36,7 +38,7 @@ POST | /mycon | email | data/Error
 
 > URL: /api/admin
 
-* Note: Only specific accounts with acces level as defined can access these endpoints.
+> Access: 5
 
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
@@ -46,3 +48,14 @@ POST | /rejectApplication | id, type (user, finance, availability), reason | Suc
 GET | /getLineman | None | Success / Error Message
 GET | /getUsers | None | Success / Error Message
 POST | /modifyAccess | id, level | Success / Error Message
+
+## Lineman Routes
+
+> URL: /api/lineman
+
+> Access: 2
+
+Method | Route Address | Input Parameters | Output JSON Expectation
+--- | --- | --- | ---
+GET | /pending | None | Success / Error Message
+POST | /complete | id | Success / Error Message

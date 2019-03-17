@@ -56,7 +56,8 @@ const consumerSchema = new Schema({
             "status": {
                 type: Number,
                 default: 0
-            }
+            },
+            "completed": Boolean
         },
         "verification": {
             "user": Boolean,
