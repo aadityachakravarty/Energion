@@ -14,19 +14,11 @@
 
 > npm i
 
-> ng build
+> npm build
 
 > npm start
 
 ## To-do List
-
-### Backend Work
-
-> All Admin APIs.
-
-> All Lineman APIs.
-
-### Frontend Work
 
 > User Dashboard UI change.
 
@@ -37,3 +29,7 @@
 > Admin Auth API with access levels.
 
 > Reworked for google geocode api.
+
+> Admin APIs.
+
+> Lineman APIs.
