@@ -1,25 +1,28 @@
 # Routes
 
-## Authentication Routes
+## Authentication
 
 > URL: /api/auth
 
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
-POST | /register | fullName, userName, email, phone, passEnter, passConfirm | Success/Error Message
-GET | /verify/:username/:code | None | Success/Error Message
-POST | /login | username, password | Success Message -> Token or Error Message
-GET | /logout | token (Header: x-access-token) or Params | Success/Error Message
-POST | /change-password | token, oldPassword, newPassword | Success/Error Message
-GET | /status | token | Success/Error Message
+GET | /status | token | Success / Error Message
+GET | /verify/:username/:code | None | Success / Error Message
+GET | /logout | token (Header: x-access-token) or Params | Success / Error Message
+POST | /register | fullName, userName, email, phone, passEnter, passConfirm | Success / Error Message
+POST | /login | username, password | Token / Error Message
+POST | /change-password | token, oldPassword, newPassword | Success / Error Message
+POST | /forgot | id |  Success / Error Message
+POST | /reset/:id/:code | password | Success / Error Message
 
-## Estimation Routes
+
+## Estimation
 
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
 POST | /api/estimate | address, capacity | Rate Object
 
-## Connection Routes
+## Connection
 
 > URL: /api/connection
 
@@ -34,7 +37,7 @@ POST | /delete | applicationID | Success /Error Message
 POST | /update | applicationID, applicantName | data/Error
 POST | /mycon | email | data/Error
 
-## Admin Routes
+## Admin
 
 > URL: /api/admin
 
@@ -49,7 +52,7 @@ GET | /getLineman | None | Success / Error Message
 GET | /getUsers | None | Success / Error Message
 POST | /modifyAccess | id, level | Success / Error Message
 
-## Lineman Routes
+## Lineman
 
 > URL: /api/lineman
 
