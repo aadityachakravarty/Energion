@@ -11,9 +11,6 @@ router.get('/my', auth, require(__base + 'modules/consumer/myCon'));
 //Update Connection
 router.post('/update', auth, require('../modules/consumer/updateCon'));
 
-//Track Connection
-router.post('/track', auth, require('../modules/consumer/track'));
-
 //testing part
 router.put('/transfer', auth, require(__base + 'modules/consumer/transferCon.js'));
 
