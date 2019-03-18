@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title">Assign Lineman</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <form [formGroup]="linemanForm" (ngSubmit)="acceptApp()">
+      <div class="form-row w-100 ml-4">
+        <div class="form-group">
+          <label for="formAddress">Select Lineman</label>
+          <select class="form-control" formControlName="lineman">
+            <option *ngFor="let l of linemen" [value]="l.id">{{ l.fullname }}</option>
+          </select>
+          <input [disabled]="!linemanForm.valid" class="btn btn-success" type="submit" value="Accept Request">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

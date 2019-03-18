@@ -1,9 +1,19 @@
 const applications = require(__base + 'models/consumer.js');
 
 const getApplications = (req, res) => {
-    let filter = req.query.filter == 'accepted' ? 1 : req.query.filter == 'rejected' ? -1 : req.query.filter == 'completed' ? 2 : 0;
+    let filter =
+        req.query.filter == 'accepted' ? 1 :
+            req.query.filter == 'rejected' ? -1 :
+                req.query.filter == 'completed' ? 2 :
+                    req.query.filter == 'pending' ? 0 : null;
 
-    applications.find({ 'status': filter }, (err, data) => {
+    let filt = {};
+    
+    if (req.query.filter) {
+        filt = { 'status': filter };
+    }
+
+    applications.find(filt, (err, data) => {
         if (err) {
             res.status(500).json({
                 success: false,

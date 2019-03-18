@@ -11,7 +11,7 @@ const getLineman = (req, res) => {
         }
         else {
             let data = doc.map((l) => {
-                return { 'fullname': l.fullname, 'email': l.email, 'phone': l.phone };
+                return { 'fullname': l.fullname, 'email': l.email, 'phone': l.phone, 'id': l._id };
             });
 
             res.json({

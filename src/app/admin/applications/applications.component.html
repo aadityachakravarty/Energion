@@ -1,3 +1,57 @@
-<p>
-  applications works!
-</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h1 class="h2">All Applications</h1>
+  <div class="col text-right">
+    <div ngbDropdown class="dropdown">
+      <button ngbDropdownToggle class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filters
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('pending')">Pending</a>
+        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('accepted')">Accepted</a>
+        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('completed')">Completed</a>
+        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('rejected')">Rejected</a>
+        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('')">No Filters</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Category</th>
+        <th>Type</th>
+        <th>Application ID</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of data; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ c.consumerDetails.applicantName }}</td>
+        <td>{{ c.consumerDetails.connectionAddress }}</td>
+        <td>{{ c.consumerDetails.contactNumber }}</td>
+        <td>{{ c.consumerDetails.connectionCategory }}</td>
+        <td>{{ c.consumerDetails.connectionType }}</td>
+        <td>{{ c._id }}</td>
+        <td>{{ c.status == 1 ? 'Accepted' : c.status == 2 ? 'Completed' : c.status == -1 ? 'Rejected' : 'Pending' }}</td>
+        <td>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" (click)="acceptApplication(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-success"
+                [disabled]="c.status != 0"><i class="fa fa-check-circle"></i> Accept</button>
+              <button type="button" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-danger"
+                [disabled]="c.status != 0"><i class="fa fa-times"></i> Reject</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -4,9 +4,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LinemanComponent } from './lineman/lineman.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { NgbModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { AcceptComponent } from './applications/accept/accept.component';
 
 const adRoutes: Routes = [
   {
@@ -25,10 +26,6 @@ const adRoutes: Routes = [
         component: ApplicationsComponent
       },
       {
-        path: 'linemen',
-        component: LinemanComponent
-      },
-      {
         path: 'userlist',
         component: UserlistComponent
       }
@@ -37,12 +34,21 @@ const adRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, LinemanComponent, ApplicationsComponent, UserlistComponent],
+  declarations: [
+    DashboardComponent,
+    ApplicationsComponent,
+    UserlistComponent,
+    AcceptComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(adRoutes),
+    NgbModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  entryComponents: [
+    AcceptComponent
   ]
 })
 export class AdminModule { }

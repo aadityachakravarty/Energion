@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TransferApplicationComponent } from './transfer-application/transfer-application.component';
 import { ClosureApplicationComponent } from './closure-application/closure-application.component';
 import { DeleteApplicationComponent } from './delete-application/delete-application.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const conRoutes: Routes = [
   {
@@ -39,7 +40,8 @@ const conRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(conRoutes),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   declarations: [
     DashboardComponent,
