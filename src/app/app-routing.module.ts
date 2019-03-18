@@ -10,6 +10,7 @@ const appRoutes: Routes = [
   { path: 'estimate', pathMatch: 'full', component: EstimateComponent },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   { path: 'consumer', loadChildren: './consumer/consumer.module#ConsumerModule'},
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
   { path: '**', component: NotFoundComponent}
 ];
 

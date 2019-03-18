@@ -1,6 +1,6 @@
 <div id="page">
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Energion</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/consumer">Energion</a>
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
         <a class="nav-link" style="cursor: pointer;" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
@@ -12,21 +12,18 @@
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" routerLink="/consumer"><i class="fa fa-user"></i> {{ profile.name
-                }}</a></li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Navigation</span>
-          </h6>
           <ul class="nav flex-column mb-2">
+            <li class="nav-item"><a class="nav-link" routerLink="/consumer"><i class="fa fa-user"></i> Profile ({{ profile.name
+                }})</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/consumer/new-application">
                 <i class="fa fa-plus"></i> New Application</a></li>
             <!-- <li class="nav-item"><a class="nav-link" routerLink="/consumer/new-application">
                 <i class="fa fa-edit"></i> Update Application</a></li> -->
             <li class="nav-item"><a class="nav-link" routerLink="/consumer/view-applications">
-                <i class="fa fa-file-text"></i> View Applications</a></li>
+                <i class="fa fa-file"></i> View Applications</a></li>
+            <li *ngIf="profile.admin" class="nav-item"><a class="nav-link" routerLink="/admin">
+                <i class="fa fa-unlock"></i> Admin Dashboard</a></li>
+
             <!-- <li class="nav-item"><a class="nav-link" routerLink="/consumer/new-application">
                 <i class="fa fa-map-marker"></i> Track Application</a></li> -->
           </ul>
