@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../auth/auth.guard';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ApplicationsComponent } from './applications/applications.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { NgbModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { AcceptComponent } from './applications/accept/accept.component';
+import { RejectComponent } from './applications/reject/reject.component';
+import { AdminGuard } from '../auth/admin.guard';
 
 const adRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    canActivateChild: [AdminGuard],
     children: [
       {
         path: '',
@@ -38,7 +39,8 @@ const adRoutes: Routes = [
     DashboardComponent,
     ApplicationsComponent,
     UserlistComponent,
-    AcceptComponent
+    AcceptComponent,
+    RejectComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ const adRoutes: Routes = [
     FormsModule
   ],
   entryComponents: [
-    AcceptComponent
+    AcceptComponent,
+    RejectComponent
   ]
 })
 export class AdminModule { }

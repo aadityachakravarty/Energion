@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.title.setTitle('Admin | Energion');
   }
 
   logout() {

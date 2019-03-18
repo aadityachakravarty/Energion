@@ -1,6 +1,8 @@
 const http = require('http')
 const mongoose = require('mongoose')
 
+global.dev = process.argv[2] == 'dev' ? true : false;
+
 const app = require('../app.js')
 const config = require('./config.json')
 
@@ -14,7 +16,8 @@ mongoose.connect(config.setup.database, { useNewUrlParser: true }, (err) => {
     console.log(err.message);
   }
   else {
-    console.log('Database Connected.');
+    if (dev)
+      console.log('Database Connected.');
   }
 });
 
@@ -23,7 +26,8 @@ mongoose.set('useCreateIndex', true);
 
 /* Server Setup */
 server.listen(port, () => {
-  console.log('Project active on : '+port)
+  if (dev)
+    console.log('Project active on : ' + port)
 })
 
 module.exports = server;

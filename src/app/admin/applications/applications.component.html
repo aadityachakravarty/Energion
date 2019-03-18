@@ -44,9 +44,9 @@
         <td>
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-              <button type="button" (click)="acceptApplication(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-success"
+              <button type="button" (click)="acceptApplication(c._id)" class="btn btn-sm btn-success"
                 [disabled]="c.status != 0"><i class="fa fa-check-circle"></i> Accept</button>
-              <button type="button" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-danger"
+              <button type="button" (click)="rejectApplication(c._id)" class="btn btn-sm btn-danger"
                 [disabled]="c.status != 0"><i class="fa fa-times"></i> Reject</button>
             </div>
           </div>

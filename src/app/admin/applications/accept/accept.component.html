@@ -13,6 +13,7 @@
           <select class="form-control" formControlName="lineman">
             <option *ngFor="let l of linemen" [value]="l.id">{{ l.fullname }}</option>
           </select>
+          <br>
           <input [disabled]="!linemanForm.valid" class="btn btn-success" type="submit" value="Accept Request">
         </div>
       </div>

@@ -33,7 +33,21 @@ export class AcceptComponent implements OnInit {
   }
 
   acceptApp() {
-    alert(JSON.stringify(this.linemanForm.value))
+    this.http.post('/api/admin/approveApplication', this.linemanForm.value, { headers: { 'x-access-token': localStorage.token } }).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.notif.fire('success', res.msg);
+          this.activeModal.close({'accepted': true});
+        }
+        else {
+          this.notif.fire('warning', res.msg);
+          this.activeModal.close({'accepted': false});
+        }
+      },
+      (err) => {
+        this.notif.fire('danger', err.message);
+      }
+    );
   }
 
   getLinemen() {

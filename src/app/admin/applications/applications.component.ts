@@ -4,6 +4,7 @@ import { NotificationService } from 'src/app/alerts/notification.service';
 import { TitleService } from 'src/app/title.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcceptComponent } from './accept/accept.component';
+import { RejectComponent } from './reject/reject.component';
 
 @Component({
   selector: 'app-applications',
@@ -46,9 +47,20 @@ export class ApplicationsComponent implements OnInit {
   acceptApplication(id: string) {
     const modalRef = this.modal.open(AcceptComponent);
     modalRef.componentInstance.id = id;
+    modalRef.result.then((res: any) => {
+      if (res.accepted) {
+        this.getApplications('');
+      }
+    });
   }
 
   rejectApplication(id: string) {
-
+    const modalRef = this.modal.open(RejectComponent);
+    modalRef.componentInstance.id = id;
+    modalRef.result.then((res: any) => {
+      if (res.rejected) {
+        this.getApplications('');
+      }
+    });
   }
 }

@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  details: any = {
+    admin: false,
+    logged: false
+  }
+
   constructor(
     private http: HttpClient,
     private notif: NotificationService,
@@ -18,9 +23,11 @@ export class AuthService {
     this.http.post('/api/auth/login', data).subscribe(
       (res: any) => {
         if (res.success) {
+          this.details.logged = true;
           localStorage.setItem('token', res.token);
           this.getProfile((admin) => {
             if (admin) {
+              this.details.admin = true;
               this.router.navigate(['/admin']);
             }
             else {
@@ -66,6 +73,7 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.clear();
+          this.details.details = {};
           this.router.navigate(['/']);
         }
         else {

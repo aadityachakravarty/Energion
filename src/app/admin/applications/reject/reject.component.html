@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Reject Application</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <form [formGroup]="rejectForm" (ngSubmit)="rejectApp()">
+      <div class="form-row w-100 ml-4">
+        <div class="form-group">
+          <label>Application ID</label>
+          <input type="text" class="form-control" [value]="id" disabled="true" />
+          <label>Type</label>
+          <select class="form-control" formControlName="type">
+            <option value="user">User</option>
+            <option value="finance">Finance</option>
+            <option value="availability">Availability</option>
+          </select>
+          <label>Reason</label>
+          <textarea formControlName="reason" class="form-control"></textarea>
+          <br>
+          <input [disabled]="!rejectForm.valid" class="btn btn-danger" type="submit" value="Reject Request">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

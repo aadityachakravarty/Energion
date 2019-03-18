@@ -2,9 +2,9 @@
 
 ## Links
 
-[Endpoints](ENDPOINTS.md)
+> [Endpoints](ENDPOINTS.md)
 
-[Requirements](REQUIREMENTS.md)
+> [Requirements](REQUIREMENTS.md)
 
 ## Description
 
@@ -20,9 +20,7 @@
 
 ## To-do List
 
-> User Dashboard UI change.
-
-> Admin Dashboard.
+> Get a better UI.
 
 ## What's done
 
@@ -33,3 +31,5 @@
 > Admin APIs.
 
 > Lineman APIs.
+
+> Admin Dashboard.

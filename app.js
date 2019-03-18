@@ -10,20 +10,22 @@ const config = require(__base + 'system/config.json')
 /* Express Instance */
 const app = express()
 
-app.use(bodyParser.json({limit: '5mb'}));
-app.use(bodyParser.urlencoded({extended:true, limit: '5mb'}));
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }));
 
-app.use(morgan('dev'));
+if (dev) {
+  app.use(morgan('dev'));
+}
 
 app.set('superSecret', config.setup.sign);
 
 /* Global Cross-Origin Access */
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next()
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next()
 })
 
 /* API Routes */
