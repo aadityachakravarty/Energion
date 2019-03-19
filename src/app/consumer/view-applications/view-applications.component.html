@@ -16,18 +16,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of data; let i = index">
+      <tr class="text-left" *ngFor="let c of data; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ c.consumerDetails.applicantName }}</td>
         <td>{{ c.consumerDetails.father_husbandName }}</td>
         <td>{{ c.consumerDetails.connectionCategory }}</td>
         <td>{{ c.consumerDetails.connectionType }}</td>
         <td>{{ c.consumerDetails.loadDemand }}</td>
-        <td class="text-center">
-          <i *ngIf="!c.consumerDetails.statusOfApplication" title="Pending" class="fa fa-exclamation"></i>
-          <i *ngIf="c.consumerDetails.statusOfApplication" title="Accepted" class="fa fa-check"></i>
-        </td>
-        <td class="text-center">
+        <td>{{ c.status == 1 ? 'Accepted' : c.status == -1 ? 'Rejected' : c.status == 2 ? 'Completed' : 'Pending'}}</td>
+        <td>
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
               <button type="button" (click)="transferCon(c._id)" placement="top" ngbTooltip="Tooltip on top" class="btn btn-sm btn-warning"><i

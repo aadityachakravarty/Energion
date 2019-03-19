@@ -7,16 +7,26 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivateChild {
+  
+  info: any = {};
+  
   path: ActivatedRouteSnapshot[];
   route: ActivatedRouteSnapshot;
   constructor(
     private router: Router,
     private auth: AuthService
-  ) { }
+  ) { 
+
+  }
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.token && this.auth.details.logged && this.auth.details.admin) {
+    
+    this.auth.getInfo((data) => {
+      this.info = data;
+    });
+    
+    if (this.info.admin) {
       return true;
     }
     else {

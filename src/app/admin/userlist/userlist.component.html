@@ -25,9 +25,9 @@
         <td>
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-              <button (click)="changeLevel(c.id, 5)" type="button" class="btn btn-sm btn-success"><i class="fa fa-users-cog"></i> Admin</button>
-              <button (click)="changeLevel(c.id, 2)" type="button" class="btn btn-sm btn-warning"><i class="fa fa-user-shield"></i> Lineman</button>
-              <button (click)="changeLevel(c.id, 1)" type="button" class="btn btn-sm btn-danger"><i class="fa fa-user"></i> User</button>
+              <button (click)="changeLevel(c.id, 5)" ngbTooltip="Admin" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-users-cog"></i></button>
+              <button (click)="changeLevel(c.id, 2)" ngbTooltip="Lineman" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-user-shield"></i></button>
+              <button (click)="changeLevel(c.id, 1)" ngbTooltip="User" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-user"></i></button>
             </div>
           </div>
         </td>

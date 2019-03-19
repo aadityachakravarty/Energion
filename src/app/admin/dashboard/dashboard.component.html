@@ -1,11 +1,16 @@
 <div id="page">
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/admin">Energion</a>
-    <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" style="cursor: pointer;" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
-      </li>
-    </ul>
+    <div ngbDropdown class="dropdown" placement="bottom-right" class="mr-2">
+      <button ngbDropdownToggle class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-cog"></i>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a ngbDropdownItem class="dropdown-item" routerLink="/consumer">{{ profile.name }}</a>
+        <a ngbDropdownItem class="dropdown-item" style="cursor: pointer;" (click)="logout()">Logout</a>
+      </div>
+    </div>
   </nav>
 
   <div class="container-fluid">

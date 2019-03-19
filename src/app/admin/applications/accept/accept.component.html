@@ -10,7 +10,7 @@
       <div class="form-row w-100 ml-4">
         <div class="form-group">
           <label for="formAddress">Select Lineman</label>
-          <select class="form-control" formControlName="lineman">
+          <select class="form-control w-100" formControlName="lineman">
             <option *ngFor="let l of linemen" [value]="l.id">{{ l.fullname }}</option>
           </select>
           <br>

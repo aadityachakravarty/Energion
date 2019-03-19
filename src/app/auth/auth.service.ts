@@ -25,8 +25,9 @@ export class AuthService {
         if (res.success) {
           this.details.logged = true;
           localStorage.setItem('token', res.token);
-          this.getProfile((admin) => {
-            if (admin) {
+          this.getProfile();
+          this.getInfo((data) => {
+            if (data.admin) {
               this.details.admin = true;
               this.router.navigate(['/admin']);
             }
@@ -51,12 +52,30 @@ export class AuthService {
     );
   }
 
-  getProfile(next) {
+  getProfile() {
     this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
-          localStorage.setItem('profile', JSON.stringify(res.data));
-          next(res.data.admin);
+          let data = res.data;
+          delete data.admin;
+          delete data.lineman;
+          localStorage.setItem('profile', JSON.stringify(data));
+        }
+        else {
+          this.notif.fire('warning', res.msg);
+        }
+      },
+      (err) => {
+        this.notif.fire('danger', err.message);
+      }
+    );
+  }
+
+  getInfo(next) {
+    this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
+      (res: any) => {
+        if (res.success) {
+          next(res.data);
         }
         else {
           this.notif.fire('warning', res.msg);

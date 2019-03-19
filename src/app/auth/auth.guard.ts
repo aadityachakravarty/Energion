@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.token && this.auth.details.logged) {
+    if (localStorage.token || this.auth.details.logged) {
       return true;
     }
     else {
@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.token && this.auth.details.logged) {
+    if (localStorage.token || this.auth.details.logged) {
       return true;
     }
     else {

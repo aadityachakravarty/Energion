@@ -10,7 +10,7 @@ import { TitleService } from 'src/app/title.service';
 export class DashboardComponent implements OnInit {
 
   profile: any = JSON.parse(localStorage.profile);
-
+  
   constructor(
     private auth: AuthService,
     private title: TitleService
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Dashboard | Energion');
+    this.profile.admin = this.auth.details.admin;
   }
 
   logout() {
