@@ -7,12 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-
-  details: any = {
-    admin: false,
-    logged: false
-  }
-
   constructor(
     private http: HttpClient,
     private notif: NotificationService,
@@ -23,18 +17,9 @@ export class AuthService {
     this.http.post('/api/auth/login', data).subscribe(
       (res: any) => {
         if (res.success) {
-          this.details.logged = true;
           localStorage.setItem('token', res.token);
           this.getProfile();
-          this.getInfo((data) => {
-            if (data.admin) {
-              this.details.admin = true;
-              this.router.navigate(['/admin']);
-            }
-            else {
-              this.router.navigate(['/consumer']);
-            }
-          });
+          this.router.navigate(['/consumer']);
         }
         else {
           this.notif.fire('warning', res.msg);
@@ -56,10 +41,9 @@ export class AuthService {
     this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
-          let data = res.data;
-          delete data.admin;
-          delete data.lineman;
-          localStorage.setItem('profile', JSON.stringify(data));
+          delete res.data.admin;
+          delete res.data.lineman;
+          sessionStorage.setItem('profile', JSON.stringify(res.data));
         }
         else {
           this.notif.fire('warning', res.msg);
@@ -71,20 +55,19 @@ export class AuthService {
     );
   }
 
-  getInfo(next) {
-    this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
-      (res: any) => {
-        if (res.success) {
-          next(res.data);
-        }
-        else {
-          this.notif.fire('warning', res.msg);
-        }
-      },
-      (err) => {
-        this.notif.fire('danger', err.message);
+  getInfo() {
+    return new Promise(
+      (resolve, reject) => {
+        this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
       }
-    );
+    )
   }
 
   logout() {
@@ -92,7 +75,7 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.clear();
-          this.details.details = {};
+          sessionStorage.clear();
           this.router.navigate(['/']);
         }
         else {

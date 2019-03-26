@@ -9,7 +9,7 @@ import { TitleService } from 'src/app/title.service';
 })
 export class DashboardComponent implements OnInit, AfterViewChecked {
 
-  profile: any = JSON.parse(localStorage.profile);
+  profile: any = JSON.parse(sessionStorage.profile);
 
   constructor(
     private auth: AuthService,

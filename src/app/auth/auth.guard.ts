@@ -13,24 +13,42 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.token || this.auth.details.logged) {
-      return true;
-    }
-    else {
-      this.router.navigate(['/auth/login']);
-      return false;
-    }
+    state: RouterStateSnapshot): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.auth.getInfo()
+        .then((res: any) => {
+          if (res.success) {
+            resolve(true);
+          }
+          else {
+            this.router.navigate(['/auth/login']);
+            resolve(false);
+          }
+        })
+        .catch(err => {
+          this.router.navigate(['/auth/login']);
+          resolve(false);
+        });
+    });
   }
   canActivateChild(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.token || this.auth.details.logged) {
-      return true;
-    }
-    else {
-      this.router.navigate(['/auth/login']);
-      return false;
-    }
+    state: RouterStateSnapshot): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.auth.getInfo()
+        .then((res: any) => {
+          if (res.success) {
+            resolve(true);
+          }
+          else {
+            this.router.navigate(['/auth/login']);
+            resolve(false);
+          }
+        })
+        .catch(err => {
+          this.router.navigate(['/auth/login']);
+          resolve(false);
+        });
+    });
   }
 }
