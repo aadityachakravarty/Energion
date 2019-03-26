@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit() {
+    this.auth.getProfile();
   }
 
   ngAfterViewChecked() {
