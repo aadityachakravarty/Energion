@@ -19,7 +19,7 @@ export class AuthService {
         if (res.success) {
           localStorage.setItem('token', res.token);
           this.getProfile();
-          this.router.navigate(['/consumer']);
+          this.router.navigate(['/admin']);
         }
         else {
           this.notif.fire('warning', res.msg);
@@ -43,7 +43,7 @@ export class AuthService {
         if (res.success) {
           delete res.data.admin;
           delete res.data.lineman;
-          sessionStorage.setItem('profile', JSON.stringify(res.data));
+          localStorage.setItem('profile', JSON.stringify(res.data));
         }
         else {
           this.notif.fire('warning', res.msg);
@@ -75,7 +75,6 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.clear();
-          sessionStorage.clear();
           this.router.navigate(['/']);
         }
         else {

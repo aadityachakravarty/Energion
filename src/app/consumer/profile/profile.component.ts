@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  info: any = JSON.parse(sessionStorage.profile);
+  info: any = JSON.parse(localStorage.profile);
 
   constructor() { }
 

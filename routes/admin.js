@@ -16,10 +16,6 @@ const admin = (req, res, next) => {
     }
 }
 
-router.get('/status', auth, admin, (req, res) => {
-    res.json({ success: true, "msg": 'You are an admin.', "data": req.info });
-});
-
 router.get('/getApplications', auth, admin, require(__base + 'modules/admin/applications.js'));
 
 router.post('/approveApplication', auth, admin, require(__base + 'modules/admin/approve.js'));
