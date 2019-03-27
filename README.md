@@ -24,6 +24,10 @@
 
 ## What's done
 
+> Estimation API reworked with pan india data-sets.
+
+> Moved from geocode to places.
+
 > Admin Auth API with access levels.
 
 > Reworked for google geocode api.

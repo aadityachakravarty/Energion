@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mapUrl = `https://www.google.com/maps/embed/v1/directions?origin=${this.data.coordinates.customer.lat},${this.data.coordinates.customer.lng}&destination=${this.data.coordinates.transformer.lat},${this.data.coordinates.transformer.lng}&key=AIzaSyCTxHU9LQsmd2QU2Fkiqq1i0G4hav6zM8E`;
+    this.mapUrl = `https://www.google.com/maps/embed/v1/directions?origin=${this.data.location.client.lat},${this.data.location.client.lng}&destination=${this.data.location.station.lat},${this.data.location.station.lng}&key=AIzaSyBJxizINy5Os6SOrzivwXHtyw2ghNI639M`;
     this.safeMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.mapUrl);
   }
 

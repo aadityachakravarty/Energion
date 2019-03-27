@@ -1,11 +1,11 @@
 const request = require('request')
 const config = require(__base + 'system/config.json')
 
-const apiKey = config.details.api.geoVar
+const apiKey = config.details.api.loc;
 
-const geoMatrix = (address, next) => {
+const nearbyPlaces = (location, api_options, next) => {
     let options = {
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`,
+        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=${api_options.radius}&keyword=kv%20electric%20substation&key=${apiKey}`,
         headers: {
             'User-Agent': 'request'
         }
@@ -21,4 +21,4 @@ const geoMatrix = (address, next) => {
     })
 }
 
-module.exports = geoMatrix
+module.exports = nearbyPlaces;

@@ -13,6 +13,8 @@ import { NotificationService } from '../alerts/notification.service';
 })
 export class EstimateComponent implements OnInit {
   loading: boolean = false;
+  addressInput: boolean = false;
+  addresses: any = [];
 
   constructor(
     private title: TitleService,
@@ -23,18 +25,20 @@ export class EstimateComponent implements OnInit {
   ) { }
 
   estForm: FormGroup = this.fb.group({
-    address: ['', Validators.required],
-    capacity: ['', Validators.required]
+    address: [''],
+    load: ['', Validators.required],
+    location: ['', Validators.required],
+    radius: ['']
   });
 
   getEstimate() {
     this.loading = true;
-    this.http.post('/api/estimate', this.estForm.value).subscribe(
+    this.http.post('/api/estimate/evaluate', this.estForm.value).subscribe(
       (res: any) => {
         if (res.success) {
           this.loading = false;
           const modalRef = this.modalService.open(MapComponent, { size: 'lg' });
-          modalRef.componentInstance.data = res.nodes;
+          modalRef.componentInstance.data = res.data;
         }
         else {
           this.loading = false;
@@ -50,5 +54,26 @@ export class EstimateComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Get Estimate | Energion');
+  }
+
+  getAddresses() {
+    this.loading = true;
+    this.http.post('/api/estimate/getAddressInfo', this.estForm.value).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.addresses = res.data;
+          this.addressInput = true;
+          this.loading = false;
+        }
+        else {
+          this.notif.fire('warning', res.msg);
+          this.addressInput = false;
+        }
+      },
+      (err) => {
+        this.notif.fire('danger', err.message);
+        this.addressInput = false;
+      }
+    )
   }
 }

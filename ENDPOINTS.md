@@ -18,9 +18,12 @@ POST | /reset/:id/:code | password | Success / Error Message
 
 ## Estimation
 
+> URL: /api/estimate
+
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
-POST | /api/estimate | address, capacity | Rate Object
+POST | /getAddressInfo | address | Success / Error Message
+POST | /evaluate | location (json string lat lng), load, radius? | Success / Error Message
 
 ## Connection
 

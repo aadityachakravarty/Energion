@@ -13,6 +13,7 @@ import { MapComponent } from './estimate/map/map.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { NotificationService } from './alerts/notification.service';
 import { ConsumerModule } from './consumer/consumer.module';
+import { StringPipe } from './estimate/string.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConsumerModule } from './consumer/consumer.module';
     NotFoundComponent,
     EstimateComponent,
     MapComponent,
-    AlertsComponent
+    AlertsComponent,
+    StringPipe
   ],
   imports: [
     BrowserModule,
