@@ -9,7 +9,36 @@
   <div class="row">
     <iframe [src]="safeMapUrl" width="90%" height="350" class="mx-auto border-0" allowfullscreen></iframe>
     <ul style="width: 90%" class="list-group mx-auto">
-      <li class="list-group-item"><strong>Cost: </strong>₹ {{ data.costs.cabling + data.costs.termination }}</li>
+      <li class="list-group-item list-group-item w-100">
+        <ul class="list-group list-group-horizontal w-100 p-0">
+          <li class="list-group-item">
+            <ul class="list-group">
+              <h4>Costs</h4>
+              <li class="list-group-item">Cabling : ₹ {{ data.costs.cabling }}</li>
+              <li class="list-group-item">Joints : ₹ {{ data.costs.joints }}</li>
+              <li class="list-group-item">Termination : ₹ {{ data.costs.termination }}</li>
+              <li class="list-group-item">Trench : ₹ {{ data.costs.trench }}</li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <ul class="list-group">
+              <h4>Technical</h4>
+              <li class="list-group-item">Voltage : {{ data.electrical.voltage }} V</li>
+              <li class="list-group-item">Current : {{ data.electrical.current }} Amp</li>
+              <li class="list-group-item">Load : {{ data.electrical.load }} kW</li>
+              <li class="list-group-item">Wire : {{ data.technical.cableSize }} mm2</li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <ul class="list-group">
+              <h4>Rates</h4>
+              <li class="list-group-item">Cabling : ₹ {{ data.chart.cable }}</li>
+              <li class="list-group-item">Joints : ₹ {{ data.chart.joint }}</li>
+              <li class="list-group-item">Termination : ₹ {{ data.chart.termination }}</li>
+            </ul>
+        </ul>
+      </li>
+      <li class="list-group-item list-group-item-success w-100"><b>Total ₹ {{ data.total.toFixed(2) }}</b></li>
     </ul>
   </div>
   <!--/CostEstimationMap-->

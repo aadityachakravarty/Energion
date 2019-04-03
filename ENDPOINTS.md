@@ -23,7 +23,7 @@ POST | /reset/:id/:code | password | Success / Error Message
 Method | Route Address | Input Parameters | Output JSON Expectation
 --- | --- | --- | ---
 POST | /getAddressInfo | address | Success / Error Message
-POST | /evaluate | location (json string lat lng), load, radius? | Success / Error Message
+POST | /evaluate | location, load | Success / Error Message
 
 ## Connection
 

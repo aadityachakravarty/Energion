@@ -13,8 +13,7 @@ import { NotificationService } from '../alerts/notification.service';
 })
 export class EstimateComponent implements OnInit {
   loading: boolean = false;
-  addressInput: boolean = false;
-  addresses: any = [];
+  locationAccess: boolean = false;
 
   constructor(
     private title: TitleService,
@@ -25,10 +24,12 @@ export class EstimateComponent implements OnInit {
   ) { }
 
   estForm: FormGroup = this.fb.group({
-    address: [''],
-    load: ['', Validators.required],
-    location: ['', Validators.required],
-    radius: ['']
+    address: [""],
+    load: ["", Validators.required],
+    location: {
+      lat: ["", Validators.required],
+      lng: ["", Validators.required]
+    }
   });
 
   getEstimate() {
@@ -54,6 +55,13 @@ export class EstimateComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Get Estimate | Energion');
+    this.getLocation();
+  }
+
+  setLocation(location) {
+    this.estForm.patchValue({
+      location
+    });
   }
 
   getAddresses() {
@@ -61,19 +69,41 @@ export class EstimateComponent implements OnInit {
     this.http.post('/api/estimate/getAddressInfo', this.estForm.value).subscribe(
       (res: any) => {
         if (res.success) {
-          this.addresses = res.data;
-          this.addressInput = true;
+          if (res.data.length == 1) {
+            let selectedLoc = res.data[0];
+            this.setLocation(selectedLoc.location);
+          }
+          else {
+            this.notif.fire('warning', 'Please be more specific.');
+          }
           this.loading = false;
         }
         else {
           this.notif.fire('warning', res.msg);
-          this.addressInput = false;
+          this.loading = false;
         }
       },
       (err) => {
         this.notif.fire('danger', err.message);
-        this.addressInput = false;
+        this.loading = false;
       }
     )
   }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let location = {
+          "lng": position.coords.longitude,
+          "lat": position.coords.latitude
+        }
+        this.locationAccess = true;
+        this.setLocation(location);
+      });
+    }
+    else {
+      this.notif.fire('danger', 'Location API not supported.');
+    }
+  }
+
 }

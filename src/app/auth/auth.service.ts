@@ -42,7 +42,6 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           delete res.data.admin;
-          delete res.data.lineman;
           localStorage.setItem('profile', JSON.stringify(res.data));
         }
         else {

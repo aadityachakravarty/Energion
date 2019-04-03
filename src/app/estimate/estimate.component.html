@@ -13,30 +13,14 @@
 
     <main role="main" class="inner cover">
       <form [formGroup]="estForm" (ngSubmit)="getEstimate()">
-        <div class="form-group text-center">
+        <div class="form-group text-center" *ngIf="!locationAccess">
           <input (blur)="getAddresses()" formControlName="address" class="m-auto col-sm-8 form-control" type="text"
-            placeholder="Enter Address*">
-        </div>
-        <div class="form-group" *ngIf="addressInput">
-          <select formControlName="location" class="m-auto col-sm-8 form-control">
-            <option value="">Addresses found</option>
-            <option *ngFor="let a of addresses; let i = index" [value]="a.location | string">{{ a.address }}</option>
-          </select>
+            placeholder="Address">
         </div>
         <div class="form-group">
           <input type="number" formControlName="load" class="m-auto col-sm-8 form-control"
-            placeholder="Power Required (in kW)*">
+            placeholder="Power Required (in kW)">
         </div>
-        <div class="form-group">
-          <input type="number" formControlName="radius" class="m-auto col-sm-8 form-control"
-            placeholder="Search Radius (in Meter, optional)">
-        </div>
-        <!-- <div class="form-group">
-          <select class="m-auto col-sm-8 form-control">
-            <option>Low Tension</option>
-            <option>High Tension</option>
-          </select>
-        </div> -->
         <button type="submit" [disabled]="!estForm.valid" class="btn btn-dark">
           <i *ngIf="!loading" class="fa fa-calculator"></i>
           <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>

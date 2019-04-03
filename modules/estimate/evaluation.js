@@ -1,16 +1,37 @@
 const nearby = require('./google/nearby');
-const rad = require(__base + 'modules/misc/rad.js')
+const rad = require(__base + 'modules/misc/rad.js');
+const rates = require(__base + 'models/rates.js');
+
+const getStations = (location, next, radius = 10000) => {
+    nearby(location, radius, (err, data) => {
+        if (err) {
+            next(err);
+        }
+        else {
+            if ((data.results.length > 0) && (radius >= 10000)) {
+                let out = {
+                    radius,
+                    results: data.results
+                }
+                next(null, out);
+            }
+            else if (radius == 15000) {
+                next(null, []);
+            }
+            else {
+                radius = 15000;
+                nearby(location, radius, next);
+            }
+        }
+    });
+}
 
 const eval = (req, res) => {
+    // We check here in case the location or load are missing
+    // for API driven calls.
     if (req.body.location && req.body.load) {
-        let location = JSON.parse(req.body.location);
-        let options = {
-            radius: req.body.radius || 10000
-        }
-
-        let availableOutputs = [];
-
-        nearby(location, options, (err, data) => {
+        // Recursive function to find nodes with variable radius
+        getStations(req.body.location, (err, data) => {
             if (err) {
                 res.status(500).json({
                     success: false,
@@ -19,79 +40,143 @@ const eval = (req, res) => {
             }
             else {
                 if (data.results.length > 0) {
+                    let requiredCapacity;
+                    let availableOutputs = [];
+                    // Now we format the data according to our rules
+                    // And follow up
                     let substations = data.results.map((i) => {
                         let power = i.name.replace(/\D/g, ' ').trim().split(' ').map((i) => {
                             let j = i ? parseInt(i) : 11;
-                            if (availableOutputs.indexOf(j) == -1) {
-                                availableOutputs.push(j);
-                            }
+                            availableOutputs.indexOf(j) == -1 ? availableOutputs.push(j) : null;
                             return j;
                         });
-                        let distance = rad(location.lat, location.lng, i.geometry.location.lat, i.geometry.location.lng).toFixed(2);
+                        let distance = rad(req.body.location.lat, req.body.location.lng, i.geometry.location.lat, i.geometry.location.lng).toFixed(2);
                         return {
                             'name': i.name,
-                            'location': {
-                                'station': i.geometry.location,
-                            },
+                            'location': i.geometry.location,
                             'power': power.sort(),
                             'distance': distance
                         }
                     });
-                    let sortedStations = substations.sort((a, b) => {
+
+                    // Now we have location and capacity of nearest substations
+                    // So, now, we need to select a capacity then the nearest substation
+
+                    if (req.body.load <= 5000) {
+                        requiredCapacity = 11;
+                    }
+
+                    else if (req.body.load > 5000 && req.body.load <= 10000) {
+                        requiredCapacity = 22;
+                    }
+
+                    else if (req.body.load > 10000 && req.body.load <= 15000) {
+                        requiredCapacity = 33;
+                    }
+
+                    else {
+                        requiredCapacity = 66;
+                    }
+
+                    // Now we shall eliminate the lower than required capacities.
+                    let possible_ss = substations.filter((i) => {
+                        if (i.power.indexOf(requiredCapacity) >= 0) {
+                            return true;
+                        }
+                    });
+
+                    if (possible_ss.length == 0) {
+                        possible_ss = substations.filter((i) => {
+                            if (i.power.some(v => v > requiredCapacity)) {
+                                return true;
+                            }
+                        });
+                    }
+
+                    // Now we shall select the one with the lowest distance and capacity
+                    let sortedStations = possible_ss.sort((a, b) => {
                         if (a.distance < b.distance)
                             return -1;
                         if (a.distance > b.distance)
                             return 1;
-                        return 0;
-                    })
-
-                    // Station Selection setup
-                    let sortAvOut = availableOutputs.sort((a, b) => {
-                        if (a > b) {
-                            return 1;
-                        }
-                        if (a < b) {
-                            return -1;
-                        }
+                        else
+                            return 0;
                     });
 
-                    let reqCap = sortAvOut[0];
+                    // Now we select the best possible station.
+                    let selectedStn = sortedStations[0];
 
-                    if (req.body.load > 5000 && sortAvOut.length > 1) {
-                        reqCap = sortAvOut[1];
-                    }
+                    // Now the variables for cost estimation
+                    let load = parseInt(req.body.load);
+                    let current = parseInt(load / (1.732 * requiredCapacity * 0.95));
+                    let length = selectedStn.distance;
+                    let joints = parseInt(length / 1000);
 
-                    if (req.body.load > 15000 && sortAvOut.length > 2) {
-                        reqCap = sortAvOut[2];
-                    }
-
-                    let selectedStation = sortedStations.filter((s) => {
-                        if (s.power.indexOf(reqCap) != -1) {
-                            return true;
+                    rates.find({ 'rating': { $gt: current } }, (err, r) => {
+                        if (err) {
+                            res.status(500).json({
+                                success: false,
+                                msg: err.message
+                            });
                         }
-                    })[0];
+                        else {
+                            let rates = r.sort((a, b) => {
+                                if (a.rating > b.rating) {
+                                    return 1;
+                                }
+                                if (b.rating > a.rating) {
+                                    return -1;
+                                }
+                                else {
+                                    return 0;
+                                }
+                            })[0];
 
-                    // Cost Estimation Setup
-                    selectedStation.costs = {
-                        'cabling': 55 * selectedStation.distance,
-                        'termination': 2000
-                    }
+                            // Here, we select the present rates
+                            let presentRates = {
+                                cable: rates.rates.sitc[requiredCapacity.toString()],
+                                joint: rates.rates.joints[requiredCapacity.toString()],
+                                termination: rates.rates.termination[requiredCapacity.toString()]
+                            }
 
-                    // Client location add-on
-                    selectedStation.location.client = location;
+                            let bill = {
+                                cabling: presentRates.cable * length,
+                                joints: presentRates.joint * joints,
+                                termination: presentRates.termination * 2,
+                                trench: 200 * length
+                            };
 
-                    // Finally Send the output. 
-                    res.json({
-                        success: true,
-                        msg: 'Estimate generated.',
-                        data: selectedStation
+                            res.json({
+                                success: true,
+                                data: {
+                                    electrical: {
+                                        voltage: requiredCapacity * 1000,
+                                        current,
+                                        load,
+                                        amps: rates.rating
+                                    },
+                                    technical: {
+                                        length,
+                                        joints,
+                                        cableSize: rates.area
+                                    },
+                                    chart: presentRates,
+                                    costs: bill,
+                                    total: bill.cabling + bill.joints + bill.termination + bill.trench,
+                                    user: {
+                                        location: req.body.location
+                                    },
+                                    substation: selectedStn
+                                }
+                            });
+                        }
                     });
                 }
                 else {
                     res.json({
                         success: false,
-                        msg: 'No stations found.'
-                    })
+                        msg: 'No substations found.'
+                    });
                 }
             }
         });
@@ -99,7 +184,7 @@ const eval = (req, res) => {
     else {
         res.json({
             success: false,
-            msg: 'Invalid Inputs.'
+            msg: 'Invalid Inputs'
         });
     }
 }

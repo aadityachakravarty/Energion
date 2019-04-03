@@ -18,13 +18,9 @@
 
 > npm start
 
-## To-do List
-
-> Get a better UI.
+## What's done
 
 > Estimation Calculations.
-
-## What's done
 
 > Estimation API reworked with pan india data-sets.
 

@@ -3,9 +3,9 @@ const config = require(__base + 'system/config.json')
 
 const apiKey = config.details.api.loc;
 
-const nearbyPlaces = (location, api_options, next) => {
+const nearbyPlaces = (location, radius, next) => {
     let options = {
-        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=${api_options.radius}&keyword=kv%20electric%20substation&key=${apiKey}`,
+        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=${radius}&keyword=kv%20electric%20substation&key=${apiKey}`,
         headers: {
             'User-Agent': 'request'
         }
@@ -16,7 +16,12 @@ const nearbyPlaces = (location, api_options, next) => {
         }
         else {
             let output = JSON.parse(res.body);
-            next(null, output);
+            if (output.results.length > 0) {
+                next(null, output);
+            }
+            else if (output.status) {
+                next(output.status);
+            }
         }
     })
 }
