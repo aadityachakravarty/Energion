@@ -6,9 +6,11 @@
 
 > [Requirements](REQUIREMENTS.md)
 
+> [Changelog](CHANGELOG.md)
+
 ## Description
 
-> This is a connection estimation project using geo coding API and works on dummy data arount piet panipat college. This project aims to allow e-filing for new electric connections as well as provides a simpler interface to do all the connection related actions (basically, CRUD). Also, the main highlight of this project is the connection wiring cost estimation mechanism which finds the nearest node and then calculates a pre-defined cost.
+> This is a connection estimation project using google places API and works across India. This project aims to allow e-filing for new electric connections as well as provides a simpler interface to do all the connection related actions. The main highlight of this project is the connection cost estimation system which finds the nearest node and then calculates a set of costs.
 
 ## Installation and Running
 
@@ -18,20 +20,12 @@
 
 > npm start
 
-## What's done
+## History
 
-> Estimation Calculations.
+> Originally, this project was comissioned by the state government of Gujarat under the Smart India Hackathon 2018's topics to be covered. This project was originally thought of by Team Envision and then later remodelled by me as well as my friend Lakshay.
 
-> Estimation API reworked with pan india data-sets.
+## Status
 
-> Moved from geocode to places.
+> As of 4 April 2019, The project stands to be Out of active development unless anyone forks it and there is a critical vulnerability to address :P.
 
-> Admin Auth API with access levels.
-
-> Reworked for google geocode api.
-
-> Admin APIs.
-
-> Lineman APIs.
-
-> Admin Dashboard.
+> The API keys in this project are dummy keys and won't work. Probably.
