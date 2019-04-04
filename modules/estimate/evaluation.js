@@ -1,5 +1,6 @@
 const nearby = require('./google/nearby');
-const rad = require(__base + 'modules/misc/rad.js');
+const matrix = require('./google/distmtrx');
+const rad = require(__base + 'modules/misc/rad');
 const rates = require(__base + 'models/rates.js');
 
 const getStations = (location, next, radius = 10000) => {
@@ -43,7 +44,7 @@ const eval = (req, res) => {
                     let requiredCapacity;
                     let availableOutputs = [];
                     // Now we format the data according to our rules
-                    // And follow up
+                    // And follow up, distance is aerial here.
                     let substations = data.results.map((i) => {
                         let power = i.name.replace(/\D/g, ' ').trim().split(' ').map((i) => {
                             let j = i ? parseInt(i) : 11;
@@ -87,8 +88,6 @@ const eval = (req, res) => {
 
                     if (possible_ss.length > 0) {
 
-
-
                         // Now we shall select the one with the lowest distance and capacity
                         let sortedStations = possible_ss.sort((a, b) => {
                             if (a.distance < b.distance)
@@ -102,67 +101,80 @@ const eval = (req, res) => {
                         // Now we select the best possible station.
                         let selectedStn = sortedStations[0];
 
-                        // Now the variables for cost estimation
-                        let load = parseInt(req.body.load);
-                        let current = parseInt(load / (1.732 * requiredCapacity * 0.95));
-                        let length = selectedStn.distance;
-                        let joints = parseInt(length / 1000);
-
-                        rates.find({ 'rating': { $gt: current } }, (err, r) => {
+                        // Here, we get the road distance between two coordinates.
+                        matrix(req.body.location, selectedStn.location, (err, doc) => {
                             if (err) {
                                 res.status(500).json({
                                     success: false,
                                     msg: err.message
-                                });
+                                })
                             }
                             else {
-                                let rates = r.sort((a, b) => {
-                                    if (a.rating > b.rating) {
-                                        return 1;
-                                    }
-                                    if (b.rating > a.rating) {
-                                        return -1;
+                                let roadDist = doc.rows[0].elements[0].distance.value;
+                                selectedStn.distance = roadDist;
+                                // Now the variables for cost estimation
+                                let load = parseInt(req.body.load);
+                                let current = parseInt(load / (1.732 * requiredCapacity * 0.95));
+                                let length = selectedStn.distance;
+                                let joints = parseInt(length / 1000);
+
+                                rates.find({ 'rating': { $gt: current } }, (err, r) => {
+                                    if (err) {
+                                        res.status(500).json({
+                                            success: false,
+                                            msg: err.message
+                                        });
                                     }
                                     else {
-                                        return 0;
-                                    }
-                                })[0];
+                                        let rates = r.sort((a, b) => {
+                                            if (a.rating > b.rating) {
+                                                return 1;
+                                            }
+                                            if (b.rating > a.rating) {
+                                                return -1;
+                                            }
+                                            else {
+                                                return 0;
+                                            }
+                                        })[0];
 
-                                // Here, we select the present rates
-                                let presentRates = {
-                                    cable: rates.rates.sitc[requiredCapacity.toString()],
-                                    joint: rates.rates.joints[requiredCapacity.toString()],
-                                    termination: rates.rates.termination[requiredCapacity.toString()]
-                                }
+                                        // Here, we select the present rates
+                                        let presentRates = {
+                                            cable: rates.rates.sitc[requiredCapacity.toString()],
+                                            joint: rates.rates.joints[requiredCapacity.toString()],
+                                            termination: rates.rates.termination[requiredCapacity.toString()]
+                                        }
 
-                                let bill = {
-                                    cabling: presentRates.cable * length * 1.2,
-                                    joints: presentRates.joint * joints,
-                                    termination: presentRates.termination * 2,
-                                    trench: 200 * length
-                                };
+                                        let bill = {
+                                            cabling: presentRates.cable * length * 1.2,
+                                            joints: presentRates.joint * joints,
+                                            termination: presentRates.termination * 2,
+                                            trench: 200 * length
+                                        };
 
-                                res.json({
-                                    success: true,
-                                    data: {
-                                        electrical: {
-                                            voltage: requiredCapacity * 1000,
-                                            current,
-                                            load,
-                                            amps: rates.rating
-                                        },
-                                        technical: {
-                                            length,
-                                            joints,
-                                            cableSize: rates.area
-                                        },
-                                        chart: presentRates,
-                                        costs: bill,
-                                        total: bill.cabling + bill.joints + bill.termination + bill.trench,
-                                        user: {
-                                            location: req.body.location
-                                        },
-                                        substation: selectedStn
+                                        res.json({
+                                            success: true,
+                                            data: {
+                                                electrical: {
+                                                    voltage: requiredCapacity * 1000,
+                                                    current,
+                                                    load,
+                                                    amps: rates.rating
+                                                },
+                                                technical: {
+                                                    length,
+                                                    joints,
+                                                    cableSize: rates.area
+                                                },
+                                                chart: presentRates,
+                                                costs: bill,
+                                                total: bill.cabling + bill.joints + bill.termination + bill.trench,
+                                                user: {
+                                                    location: req.body.location
+                                                },
+                                                substation: selectedStn
+                                            }
+                                        });
                                     }
                                 });
                             }

@@ -14,6 +14,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { NotificationService } from './alerts/notification.service';
 import { ConsumerModule } from './consumer/consumer.module';
 import { StringPipe } from './estimate/string.pipe';
+import { RoundupPipe } from './estimate/roundup.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StringPipe } from './estimate/string.pipe';
     EstimateComponent,
     MapComponent,
     AlertsComponent,
-    StringPipe
+    StringPipe,
+    RoundupPipe
   ],
   imports: [
     BrowserModule,
