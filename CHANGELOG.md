@@ -8,6 +8,8 @@
 
 > README updates.
 
+> Estimation Map Bug.
+
 ## 2 April 2019
 
 > Estimation Calculations.

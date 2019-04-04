@@ -14,18 +14,18 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+            <th scope="col">Distance from Substation</th>
+            <th scope="col">Load</th>
             <th scope="col">Voltage</th>
             <th scope="col">Current</th>
-            <th scope="col">Load</th>
-            <th scope="col">Distance</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td>{{ data.substation.distance }} m</td>
+            <td>{{ data.electrical.load }} kW</td>
             <td>{{ data.electrical.voltage }} V</td>
             <td>{{ data.electrical.current }} Amps</td>
-            <td>{{ data.electrical.load }} kW</td>
-            <td>{{ data.substation.distance }} m</td>
           </tr>
         </tbody>
       </table>
@@ -35,10 +35,10 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Type</th>
+        <th scope="col">Item Description</th>
         <th scope="col">Rate</th>
         <th scope="col">Quantity</th>
-        <th scope="col">Cost</th>
+        <th scope="col">Amount</th>
       </tr>
     </thead>
     <tbody>
