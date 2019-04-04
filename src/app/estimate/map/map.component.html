@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Conection Estimate</h4>
+  <h4 class="modal-title">Estimate for HT Cable from your location to nearest substation</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -11,7 +11,7 @@
       <iframe [src]="safeMapUrl" height="100" class="w-100 p-0 mx-auto border-0" allowfullscreen></iframe>
     </div>
     <div class="col">
-      <table class="table table-bordered">
+      <table class="table table-bordered text-center">
         <thead>
           <tr>
             <th scope="col">Distance from Substation</th>
@@ -36,40 +36,40 @@
     <thead>
       <tr>
         <th scope="col">Item Description</th>
-        <th scope="col">Rate</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Amount</th>
+        <th scope="col" class="text-center">Quantity</th>
+        <th scope="col" class="text-center">Rate</th>
+        <th scope="col" class="text-center">Amount</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Cabling</td>
+      <tr class="text-center">
+        <td class="text-left">Estimated cable length ({{ data.technical.cableSize }} mm<sup>2</sup>)</td>
+        <td>{{ (data.substation.distance * 1.2) | number: '1.0-0' }} m</td>
         <td>₹{{ data.chart.cable }}</td>
-        <td>{{ data.substation.distance }} m</td>
-        <td>₹{{ data.costs.cabling.toFixed(2) }}</td>
+        <td>₹{{ data.costs.cabling.toFixed(0) }}</td>
       </tr>
-      <tr>
-        <td>Joints</td>
-        <td>₹{{ data.chart.joint }}</td>
+      <tr class="text-center">
+        <td class="text-left">Probable no. of joints</td>
         <td>{{ data.technical.joints }}</td>
+        <td>₹{{ data.chart.joint }}</td>
         <td>₹{{ data.costs.joints }}</td>
       </tr>
-      <tr>
-        <td>Termination</td>
-        <td>₹{{ data.chart.termination }}</td>
+      <tr class="text-center">
+        <td class="text-left">Termination</td>
         <td>2</td>
+        <td>₹{{ data.chart.termination }}</td>
         <td>₹{{ data.costs.termination }}</td>
       </tr>
-      <tr>
-        <td>Trench</td>
+      <tr class="text-center">
+        <td class="text-left">Trench</td>
+        <td>{{ data.substation.distance | number: '1.0-0' }} m</td>
         <td>₹200</td>
-        <td>{{ data.substation.distance }} m</td>
         <td>₹{{ data.costs.trench }}</td>
       </tr>
       <tr>
-        <td colspan="2" class="text-center">{{ data.substation.name }}</td>
+        <td colspan="2" class="text-center">Estimated amount</td>
         <td class="text-right"><b>Total</b></td>
-        <td>₹{{ data.total.toFixed(2) }}</td>
+        <td class="text-center">₹{{ data.total | number: '1.0-0' }}</td>
       </tr>
     </tbody>
   </table>

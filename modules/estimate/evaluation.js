@@ -136,7 +136,7 @@ const eval = (req, res) => {
                                 }
 
                                 let bill = {
-                                    cabling: presentRates.cable * length,
+                                    cabling: presentRates.cable * length * 1.2,
                                     joints: presentRates.joint * joints,
                                     termination: presentRates.termination * 2,
                                     trench: 200 * length
