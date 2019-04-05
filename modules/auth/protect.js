@@ -37,6 +37,7 @@ const protect = (req, res, next) => {
 									name: user.fullname,
 									email: user.email,
 									admin: user.level == 5 ? true : false,
+									lineman: user.level == 2 ? true : false,
 									phone: user.phone
 								};
 								next();
