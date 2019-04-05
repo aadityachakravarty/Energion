@@ -12,12 +12,11 @@
     "details": {
         "mail": {
             "host": "Yandex",
-            "user": "no-reply@metaxyt.cf",
-            "pass": "dummy123!"
+            "user": "no-reply@appgroceries.com",
+            "pass": "s3gF854cEu4veff"
         },
         "api": {
-            "locationIQ": "5e78ca7b06237a",
-            "loc": "AIzaSyBVwLlqUXqoRrxaqqaF4TQQGpHy4smVKzk"
+            "google": "AIzaSyBVwLlqUXqoRrxaqqaF4TQQGpHy4smVKzk"
         }
     },
     "setup": {
@@ -26,6 +25,6 @@
         "database": "mongodb+srv://admin:admin123@cluster0-tuv9y.mongodb.net/test?retryWrites=true",
         "port": 3000,
         "salt": 10,
-        "callback": "https://energion.metaxyt.cf"
+        "callback": "https://energion.appgroceries.com"
     }
 }

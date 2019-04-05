@@ -4,6 +4,7 @@ const userModel = require(__base + 'models/user.js');
 const config = require(__base + 'system/config.json')
 
 const sendEmail = require(__base + 'modules/comm/email.js');
+const sendSMS = require(__base + 'modules/comm/twilio.js');
 
 const rand = require(__base + 'modules/misc/rand.js');
 
@@ -56,9 +57,9 @@ const register = (req, res) => {
                 else {
                   if (config.settings.verification.email) {
                     // If emails are enabled in the configuration then send confirmation email.
-                    let subject = "Energion Activation";
+                    let subject = "Account activation for Energion";
                     let link = `${cblink}/auth/verify/${user._id}/${otp.email}`;
-                    let message = "Thank you for registering. \n Please click on the following link to activate your account. \n " + link;
+                    let message = "Thank you for registering on energion. \n Please click on the following link or copy it to the address bar to activate your account. \n " + link;
                     sendEmail(req.body.email, subject, message);
                   }
                   res.json({
