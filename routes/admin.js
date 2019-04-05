@@ -26,6 +26,8 @@ router.get('/getLineman', auth, admin, require(__base + 'modules/admin/lineman.j
 
 router.get('/getUsers', auth, admin, require(__base + 'modules/admin/userlist.js'));
 
+router.post('/deleteUser', auth, admin, require(__base + 'modules/admin/deleteUser.js'));
+
 router.post('/modifyAccess', auth, admin, require(__base + 'modules/admin/accesslevel.js'));
 
 module.exports = router;

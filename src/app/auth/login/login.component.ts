@@ -27,6 +27,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.title.setTitle('Login | Energion');
   }
 
+  getValid(key) {
+    let keyset = this.loginForm.get(key);
+    if ((keyset.dirty || keyset.touched)) {
+      return  keyset.valid;
+    }
+  }
+
   login() {
     this.loading = true;
     this.auth.loginUser(this.loginForm.value, () => {

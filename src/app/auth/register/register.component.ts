@@ -35,28 +35,39 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.loading = true;
-    if (this.regForm.value.password != this.regForm.value.passwordConfirm) {
-      this.notif.fire('danger', 'Passwords do not match.'); 
-      this.loading = false;
-    }
-    else {
-      this.http.post('/api/auth/register', this.regForm.value).subscribe(
-        (res: any) => {
-          if (res.success) {
-            this.notif.fire('info', 'Please check your email.');
-            this.loading = false;
-            this.router.navigate(['/']);
-          }
-          else {
-            this.loading = false;
-            this.notif.fire('warning', res.msg);  
-          }
-        },
-        (err) => {
+    this.http.post('/api/auth/register', this.regForm.value).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.notif.fire('info', 'Please check your email.');
           this.loading = false;
-          this.notif.fire('danger', err.message);  
+          this.router.navigate(['/']);
         }
-      );
+        else {
+          this.loading = false;
+          this.notif.fire('warning', res.msg);
+        }
+      },
+      (err) => {
+        this.loading = false;
+        this.notif.fire('danger', err.message);
+      }
+    );
+  }
+
+  getValid(key) {
+    let keyset = this.regForm.get(key);
+    if ((keyset.dirty || keyset.touched)) {
+      return keyset.valid;
     }
+  }
+
+  validConfirm() {
+    let pass = this.regForm.get('password').value;
+    let pass2 = this.regForm.get('passwordConfirm').value;
+    return (pass != '' && pass2 != '') ? pass == pass2 : null;
+  }
+
+  validateForm() {
+    return this.validConfirm() && this.regForm.valid;
   }
 }

@@ -106,4 +106,11 @@ export class EstimateComponent implements OnInit {
     }
   }
 
+  getValid(key) {
+    let keyset = this.estForm.get(key);
+    if ((keyset.dirty || keyset.touched)) {
+      return  keyset.valid;
+    }
+  }
+
 }

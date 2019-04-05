@@ -56,4 +56,22 @@ export class UserlistComponent implements OnInit {
       }
     );
   }
+
+  deleteUser(id) {
+    this.http.post('/api/admin/deleteUser', { id }, { headers: { 'x-access-token': localStorage.token } }).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.notif.fire('success', res.msg);
+          this.getUsers();
+        }
+        else {
+          this.notif.fire('warning', res.msg);
+          this.getUsers();
+        }
+      },
+      (err) => {
+        this.notif.fire('danger', err.message);
+      }
+    );
+  }
 }

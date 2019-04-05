@@ -11,7 +11,7 @@
       </div>
 
       <div class="md-form">
-        <label for="nominee">Father's Name/ Husband's Name</label>
+        <label for="nominee">Father's Name / Husband's Name</label>
         <input type="text" id="nominee" formControlName="nominee" class="form-control">
       </div>
 
@@ -76,8 +76,8 @@
         <div class="col-sm-5">
           <select class="form-control" formControlName="connectionCategory">
             <option>Domestic Supply (DS)</option>
-            <option>Non Domestic Supply (NDS)</option>
-            <option>Industrial</option>
+            <option>Commercial Supply (NDS)</option>
+            <option>Industrial Supply (IS)</option>
           </select>
         </div>
         <!--/Connection Category Dropdown-->
@@ -92,8 +92,8 @@
         </div>
         <div class="col-sm-5">
           <select class="form-control" formControlName="connectionType">
-            <option>Permanent</option>
-            <option>Temporary</option>
+            <option>High Tension</option>
+            <option>Low Tension</option>
           </select>
         </div>
         <!--/Connection Type Dropdown-->
@@ -109,9 +109,10 @@
         </div>
         <div class="col-sm-5">
           <select class="form-control" formControlName="voltageSupply">
-            <option>1 Phase</option>
-            <option>3 Phase</option>
-            <option>11 KV</option>
+            <option>11 kV</option>
+            <option>22 kV</option>
+            <option>33 kV</option>
+            <option>66 kV</option>
           </select>
         </div>
         <!--/Voltage Supply Dropdown-->
