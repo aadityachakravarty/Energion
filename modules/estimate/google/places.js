@@ -1,7 +1,7 @@
 const request = require('request')
 const config = require(__base + 'system/config.json')
 
-const apiKey = config.details.api.loc;
+const apiKey = config.details.api.google;
 
 const geocodeapi = (address, next) => {
     let options = {
