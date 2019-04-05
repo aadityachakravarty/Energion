@@ -4,7 +4,7 @@ const userModel = require(__base + 'models/user.js');
 const config = require(__base + 'system/config.json')
 
 const sendEmail = require(__base + 'modules/comm/email.js');
-const sendSMS = require(__base + 'modules/comm/twilio.js');
+// const sendSMS = require(__base + 'modules/comm/twilio.js');
 
 const rand = require(__base + 'modules/misc/rand.js');
 

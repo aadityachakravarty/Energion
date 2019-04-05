@@ -1,5 +1,5 @@
-const config = require(__base + 'system/config.js')
-const client = require('twilio')(config.details.Twilio.SID, config.details.Twilio.Token)
+const config = require(__base + 'system/config.json');
+const client = require('twilio')(config.details.Twilio.SID, config.details.Twilio.Token);
 
 const sendSMS = (number, message) => {
   client.messages.create({
