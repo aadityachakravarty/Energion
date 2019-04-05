@@ -64,4 +64,8 @@ export class ViewApplicationsComponent implements OnInit {
     modalRef.componentInstance.id = id;
   }
 
+  getDisable(val) {
+    return val <= 0 ? false : true;
+  }
+
 }
