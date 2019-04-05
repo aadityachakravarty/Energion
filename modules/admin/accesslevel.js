@@ -4,7 +4,7 @@ const users = require(__base + 'models/user.js');
 const accessLevel = (req, res) => {
     if (req.body.id && req.body.level) {
         if (req.info.id == req.body.id) {
-            res.status(400).json({
+            res.json({
                 success: false,
                 msg: 'You cannot modify your own access level.'
             });
