@@ -7,32 +7,38 @@
 
       <div class="md-form">
         <label for="applicantName">Applicant's Name</label>
-        <input type="text" id="applicantName" class="form-control" formControlName="applicantName">
+        <input type="text" class="form-control" formControlName="applicantName" 
+        [ngClass]="getValid('applicantName') ? 'is-valid' : getValid('applicantName') == undefined ? '' : 'is-invalid'">
       </div>
 
       <div class="md-form">
         <label for="nominee">Father's Name / Husband's Name</label>
-        <input type="text" id="nominee" formControlName="nominee" class="form-control">
+        <input type="text" formControlName="nominee" class="form-control"
+        [ngClass]="getValid('nominee') ? 'is-valid' : getValid('nominee') == undefined ? '' : 'is-invalid'">
       </div>
 
       <div class="md-form">
-        <label for="aadharNumber">Aadhar Number</label>
-        <input type="text" id="aadharNumber" formControlName="aadharNum" class="form-control">
+        <label for="aadharNum">Aadhar Number</label>
+        <input type="number" formControlName="aadharNum" class="form-control" pattern="^(\d{12}|\d{16})$" 
+        [ngClass]="getValid('aadharNum') ? 'is-valid' : getValid('aadharNum') == undefined ? '' : 'is-invalid'">
       </div>
 
       <div class="md-form">
         <label for="mobileNumber">Mobile Number</label>
-        <input type="text" id="mobileNumber" class="form-control" formControlName="applicantPhone">
+        <input type="number" class="form-control" pattern="^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$" formControlName="applicantPhone"
+        [ngClass]="getValid('applicantPhone') ? 'is-valid' : getValid('applicantPhone') == undefined ? '' : 'is-invalid'">
       </div>
 
       <div class="md-form">
         <label for="email">E-mail</label>
-        <input type="text" id="email" class="form-control" formControlName="applicantEmail">
+        <input type="text" id="email" class="form-control" formControlName="applicantEmail"
+        [ngClass]="getValid('applicantEmail') ? 'is-valid' : getValid('applicantEmail') == undefined ? '' : 'is-invalid'">
       </div>
 
       <div class="md-form">
         <label for="connectionAddress">Permanent Address</label>
-        <textarea class="form-control" formControlName="permanentAddress" id="connectionAddress" rows="3"></textarea>
+        <textarea class="form-control" formControlName="permanentAddress" id="connectionAddress" rows="3"
+        [ngClass]="getValid('permanentAddress') ? 'is-valid' : getValid('permanentAddress') == undefined ? '' : 'is-invalid'"></textarea>
       </div>
 
     </div>
@@ -41,7 +47,8 @@
 
       <div class="md-form">
         <label for="connectionAddress">Connection Address</label>
-        <textarea class="form-control" formControlName="connectionAddress" id="connectionAddress" rows="3"></textarea>
+        <textarea class="form-control" formControlName="connectionAddress" id="connectionAddress" rows="3"
+        [ngClass]="getValid('connectionAddress') ? 'is-valid' : getValid('connectionAddress') == undefined ? '' : 'is-invalid'"></textarea>
       </div>
 
       <br>
@@ -63,7 +70,8 @@
 
       <div class="md-form">
         <label for="loadDemand">Load Demand</label>
-        <input type="text" id="loadDemand" formControlName="loadDemand" class="form-control" mdbActive>
+        <input type="number" formControlName="loadDemand" class="form-control"
+        [ngClass]="getValid('loadDemand') ? 'is-valid' : getValid('loadDemand') == undefined ? '' : 'is-invalid'">
       </div>
 
       <br>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { NotificationService } from 'src/app/alerts/notification.service';
 import { HttpClient } from '@angular/common/http';
 import { TitleService } from 'src/app/title.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-application',
@@ -17,13 +18,14 @@ export class NewApplicationComponent implements OnInit {
     private fb: FormBuilder,
     private notif: NotificationService,
     private http: HttpClient,
-    private title: TitleService
+    private title: TitleService,
+    private router: Router
   ) { }
 
   application: FormGroup = this.fb.group({
-    'applicantName': [this.profile.name, Validators.required],
-    'applicantPhone': [this.profile.phone, Validators.required],
-    'applicantEmail': [this.profile.email, Validators.required],
+    'applicantName': ['', Validators.required],
+    'applicantPhone': ['', Validators.required],
+    'applicantEmail': ['', [Validators.required, Validators.email]],
     'nominee': ['', Validators.required],
     'aadharNum': ['', Validators.required],
     'permanentAddress': ['', Validators.required],
@@ -40,10 +42,11 @@ export class NewApplicationComponent implements OnInit {
   }
 
   submitConnection() {
-    this.http.post('/api/connection/new', this.application.value, { headers:{ 'x-access-token': localStorage.token } }).subscribe(
+    this.http.post('/api/connection/new', this.application.value, { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
           this.notif.fire('success', res.msg);
+          this.router.navigate(['/consumer/view-applications']);
         }
         else {
           this.notif.fire('warning', res.msg);
@@ -53,5 +56,12 @@ export class NewApplicationComponent implements OnInit {
         this.notif.fire('danger', err.message);
       }
     );
+  }
+
+  getValid(key) {
+    let keyset = this.application.get(key);
+    if ((keyset.dirty || keyset.touched)) {
+      return keyset.valid;
+    }
   }
 }
