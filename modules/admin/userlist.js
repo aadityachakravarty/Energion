@@ -1,7 +1,7 @@
 const users = require(__base + 'models/user.js');
 
 const userlist = (req, res) => {
-    users.find({}, (err, doc) => {
+    users.find({'status': 1}, (err, doc) => {
         if (err) {
             res.status(500).json({
                 success: false,

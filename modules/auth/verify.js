@@ -20,7 +20,7 @@ const verify = (req, res) => {
       }
       else {
         if (user.code.email == code) {
-          checkDetails.findOneAndUpdate({ "_id": id }, { $set: { "verified.email": true }, $unset: { "code.email": 1 } }, { new: true }, (err, doc) => {
+          checkDetails.findOneAndUpdate({ "_id": id }, { $set: { "verified.email": true, "status": 1 }, $unset: { "code.email": 1 } }, { new: true }, (err, doc) => {
             if (err) {
               res.json({
                 success: false,
