@@ -10,42 +10,43 @@
         </nav>
       </div>
     </header>
-  
+
     <main role="main" class="inner cover">
       <form [formGroup]="regForm" (ngSubmit)="register()">
         <div class="form-group text-center">
-          <input type="text" formControlName="fullname" 
-          [ngClass]="getValid('fullname') ? 'is-valid' : getValid('fullname') == undefined ? '' : 'is-invalid'"
-          class="m-auto col-sm-8 form-control" id="fullname" aria-describedby="emailHelp" placeholder="Full Name">
+          <input type="text" formControlName="fullname"
+            [ngClass]="getValid('fullname') ? 'is-valid' : getValid('fullname') == undefined ? '' : 'is-invalid'"
+            class="m-auto col-sm-8 form-control" id="fullname" aria-describedby="emailHelp" placeholder="Full Name">
         </div>
         <div class="form-group">
-          <input type="text" formControlName="email" 
-          [ngClass]="getValid('email') ? 'is-valid' : getValid('email') == undefined ? '' : 'is-invalid'"
-          class="m-auto col-sm-8 form-control" id="email" placeholder="Email Address">
+          <input type="text" formControlName="email"
+            [ngClass]="getValid('email') ? 'is-valid' : getValid('email') == undefined ? '' : 'is-invalid'"
+            class="m-auto col-sm-8 form-control" id="email" placeholder="Email Address">
         </div>
         <div class="form-group">
-          <input type="number" formControlName="phone" pattern="^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$" 
-          [ngClass]="getValid('phone') ? 'is-valid' : getValid('phone') == undefined ? '' : 'is-invalid'"
-          class="m-auto col-sm-8 form-control" id="phone" placeholder="Phone Number">
+          <input type="number" formControlName="phone" pattern="^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$"
+            [ngClass]="getValid('phone') ? 'is-valid' : getValid('phone') == undefined ? '' : 'is-invalid'"
+            class="m-auto col-sm-8 form-control" id="phone" placeholder="Phone Number">
         </div>
         <div class="form-group">
-          <input type="password" formControlName="password" 
-          [ngClass]="getValid('password') ? 'is-valid' : getValid('password') == undefined ? '' : 'is-invalid'"
-          class="m-auto col-sm-8 form-control" id="pass" placeholder="Password">
+          <input type="password" formControlName="password"
+            [ngClass]="getValid('password') ? 'is-valid' : getValid('password') == undefined ? '' : 'is-invalid'"
+            class="m-auto col-sm-8 form-control" id="pass"
+            minlength="8" placeholder="Password">
         </div>
         <div class="form-group">
-          <input type="password" formControlName="passwordConfirm" 
-          [ngClass]="getValid('passwordConfirm') ? (validConfirm() ? 'is-valid' : 'is-invalid') : getValid('passwordConfirm') == undefined ? '' : 'is-invalid'"
-          class="m-auto col-sm-8 form-control" id="passconfirm" placeholder="Password Confirm">
+          <input type="password" formControlName="passwordConfirm"
+            [ngClass]="getValid('passwordConfirm') ? (validConfirm() ? 'is-valid' : 'is-invalid') : getValid('passwordConfirm') == undefined ? '' : 'is-invalid'"
+            class="m-auto col-sm-8 form-control" id="passconfirm" placeholder="Password Confirm">
         </div>
         <button type="submit" [disabled]="!validateForm()" class="btn btn-dark">
-            <i *ngIf="!loading" class="fa fa-user-plus"></i> 
-            <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i> Register</button>
+          <i *ngIf="!loading" class="fa fa-user-plus"></i>
+          <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i> Register</button>
       </form>
     </main>
-  
+
     <footer class="mastfoot mt-auto">
-      
+
     </footer>
   </div>
 </div>
