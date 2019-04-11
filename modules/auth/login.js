@@ -47,7 +47,7 @@ const checkUser = (req, res) => {
                 if (result) {
                   // Check if the user is verified
                   if (user.verified.phone || user.verified.email) {
-                    let token = jwt.sign({ "id": user._id }, config.setup.sign, {
+                    let token = jwt.sign({ "id": user._id }, cfg.sign, {
                       expiresIn: 60 * 60 * 24 * 7 // expires in 1 week
                     });
 

@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const userModel = require(__base + 'models/user.js');
-const config = require(__base + 'system/config.json');
 
 const protect = (req, res, next) => {
 	// check header or url parameters or post parameters for token
@@ -9,7 +8,7 @@ const protect = (req, res, next) => {
 	// decode token
 	if (token) {
 		// verifies secret and checks exp
-		jwt.verify(token, config.setup.sign, (err, info) => {
+		jwt.verify(token, cfg.sign, (err, info) => {
 			if (err) {
 				res.json({
 					success: false,

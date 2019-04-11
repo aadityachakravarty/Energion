@@ -1,17 +1,31 @@
-const http = require('http')
-const mongoose = require('mongoose')
+const http = require('http');
+const mongoose = require('mongoose');
 
-global.dev = process.argv[2] == 'dev' ? true : false;
+// Global Variables
+global.dev = process.env.NODE_ENV == 'development' ? true : false;
+
+global.cfg = {
+  sign: process.env.tokenSign,
+  mongo: process.env.mongoURI,
+  api: {
+    google: process.env.googleAPIKey
+  },
+  email: {
+    host: process.env.emailHost,
+    user: process.env.emailUser,
+    pass: process.env.emailPass
+  }
+}
 
 const app = require('../app.js')
-const config = require('./config.json')
+const config = require('./config.json');
 
 const server = http.createServer(app)
 
 const port = process.env.PORT || config.setup.port
 
 /* Mongoose connection */
-mongoose.connect(config.setup.database, { useNewUrlParser: true }, (err) => {
+mongoose.connect(cfg.mongo, { useNewUrlParser: true }, (err) => {
   if (err) {
     console.log(err.message);
   }

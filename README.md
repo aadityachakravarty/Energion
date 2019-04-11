@@ -26,6 +26,4 @@
 
 ## Status
 
-> As of 4 April 2019, The project stands to be Out of active development unless anyone forks it and there is a critical vulnerability to address :P.
-
-> The API keys in this project are dummy keys and won't work. Probably.
+> As of 11 April 2019, The project stands to be Out of active development unless anyone forks it and there is a critical vulnerability to address.

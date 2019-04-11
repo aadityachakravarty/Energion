@@ -1,7 +1,5 @@
 const request = require('request')
-const config = require(__base + 'system/config.json')
-
-const apiKey = config.details.api.google;
+const apiKey = cfg.api.google;
 
 const distmat = (origin, destination, next) => {
     let options = {

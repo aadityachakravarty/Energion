@@ -1,7 +1,6 @@
 const request = require('request')
-const config = require(__base + 'system/config.json')
 
-const apiKey = config.details.api.google;
+const apiKey = cfg.api.google;
 
 const nearbyPlaces = (location, radius, next) => {
     let options = {
