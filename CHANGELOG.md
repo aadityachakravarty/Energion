@@ -1,5 +1,17 @@
 # Changelog
 
+## 11 April 2019
+
+> Guard Updates
+
+> UI Updates
+
+> Minor Fixes
+
+> Other miscellaneous stuff.
+
+> Backend keys shift to env.
+
 ## 4 April 2019
 
 > Finalized the estimation algorithm and verified.

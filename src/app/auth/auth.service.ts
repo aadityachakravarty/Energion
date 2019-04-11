@@ -46,7 +46,7 @@ export class AuthService {
           localStorage.setItem('profile', JSON.stringify(res.data));
         }
         else {
-          this.notif.fire('warning', res.msg);
+          this.notif.fire('warning', 'Invalid Session, please re-authenticate.');
         }
       },
       (err) => {

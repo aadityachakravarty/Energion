@@ -12,6 +12,8 @@ import { NotificationService } from '../alerts/notification.service';
   styleUrls: ['./estimate.component.css', '../../assets/styles/cover.css']
 })
 export class EstimateComponent implements OnInit {
+
+  public token = localStorage.token;
   loading: boolean = false;
   locationAccess: boolean = false;
 

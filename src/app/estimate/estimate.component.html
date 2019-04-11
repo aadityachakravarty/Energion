@@ -6,7 +6,7 @@
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link" routerLink="/">Home</a>
           <a class="nav-link active" routerLink="/estimate">Estimate</a>
-          <a class="nav-link" routerLink="/auth/login">Login / Signup</a>
+          <a class="nav-link" routerLink="/auth/login">{{ token ? 'Dashboard' : 'Login / Signup' }}</a>
         </nav>
       </div>
     </header>
