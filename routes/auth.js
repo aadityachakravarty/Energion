@@ -25,7 +25,7 @@ router.get('/status', auth, (req, res) => {
     res.json({ success: true, "msg": 'You are logged in.', "data": req.info });
 });
 
-// router.post('/change-password', auth, require(__base + 'modules/auth/passChange.js'))
+router.post('/change-password', auth, require(__base + 'modules/auth/passChange.js'))
 
 router.get('/logout', auth, require(__base + 'modules/auth/logout.js'));
 

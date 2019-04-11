@@ -11,6 +11,7 @@ import { TransferApplicationComponent } from './transfer-application/transfer-ap
 import { ClosureApplicationComponent } from './closure-application/closure-application.component';
 import { DeleteApplicationComponent } from './delete-application/delete-application.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const conRoutes: Routes = [
   {
@@ -31,6 +32,10 @@ const conRoutes: Routes = [
       {
         path: 'view-applications',
         component: ViewApplicationsComponent
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordComponent
       }
     ]
   },
@@ -51,7 +56,8 @@ const conRoutes: Routes = [
     ViewApplicationsComponent,
     TransferApplicationComponent,
     ClosureApplicationComponent,
-    DeleteApplicationComponent
+    DeleteApplicationComponent,
+    ChangePasswordComponent
   ],
   entryComponents: [
     TransferApplicationComponent,
