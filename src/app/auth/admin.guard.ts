@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivateChild {
     return new Promise((resolve) => {
       this.auth.getInfo()
         .then((res: any) => {
-          if (res.success && res.data.admin) {
+          if (res.success && res.data.level == 5) {
             resolve(true);
           }
           else {

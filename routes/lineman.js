@@ -5,7 +5,7 @@ const auth = require(__base + 'modules/auth/protect.js');
 
 // Admin check for the following URLS.
 const lineman = (req, res, next) => {
-    if (req.info.lineman) {
+    if (req.info.level == 2) {
         next();
     }
     else {

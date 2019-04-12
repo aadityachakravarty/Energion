@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Dashboard | Energion');
     this.auth.getInfo().then((res: any) => {
-      this.profile.admin = res.data.admin;
+      this.profile.admin = res.data.level == 5;
     });
   }
 

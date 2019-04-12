@@ -41,8 +41,7 @@ export class AuthService {
     this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
-          delete res.data.admin;
-          delete res.data.lineman;
+          delete res.data.level;
           localStorage.setItem('profile', JSON.stringify(res.data));
         }
         else {
