@@ -16,13 +16,14 @@
         new connection, and you can manage your current electric connections or apply for new ones.
       </p>
       <p class="lead">
-        <a routerLink="/auth/login" class="btn btn-lg btn-dark">Login / Signup</a>
+        <a routerLink="/auth/login" class="btn btn-lg btn-dark">{{ token ? 'Dashboard' : 'Login / Signup' }}</a>
       </p>
     </main>
 
     <footer class="mastfoot mt-auto">
       <div class="inner text-dark">
-        <p>Developed by Aaditya Chakravarty and Lakshay Chhabra.</p>
+        <p>Aaditya Chakravarty . Lakshay Chhabra</p>
+        <p><a class="text-dark" href="https://github.com/aadityachakravarty/energion"><i class="fab fa-github"></i> GitHub</a></p>
       </div>
     </footer>
   </div>

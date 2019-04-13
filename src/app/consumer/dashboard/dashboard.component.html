@@ -7,9 +7,9 @@
         <i class="fa fa-user-cog"></i>
       </button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a ngbDropdownItem class="dropdown-item" routerLink="/consumer">{{ profile.name }}</a>
-        <a ngbDropdownItem class="dropdown-item" routerLink="/consumer/change-password">Change Password</a>
-        <a ngbDropdownItem class="dropdown-item" style="cursor: pointer;" (click)="logout()">Logout</a>
+        <a ngbDropdownItem class="dropdown-item" routerLink="/consumer"><i class="fa fa-user"></i> {{ profile.name }}</a>
+        <a ngbDropdownItem class="dropdown-item" routerLink="/consumer/change-password"><i class="fa fa-key"></i> Change Password</a>
+        <a ngbDropdownItem class="dropdown-item" style="cursor: pointer;" (click)="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
             <li class="nav-item"><a class="nav-link" routerLink="/estimate">
                 <i class="fa fa-calculator"></i> Get Estimate</a></li>
             <li *ngIf="profile.admin" class="nav-item"><a class="nav-link" routerLink="/admin">
-                <i class="fa fa-unlock"></i> Admin Dashboard</a></li>
+                <i class="fa fa-user-cog"></i> Admin Dashboard</a></li>
 
             <!-- <li class="nav-item"><a class="nav-link" routerLink="/consumer/new-application">
                 <i class="fa fa-map-marker"></i> Track Application</a></li> -->

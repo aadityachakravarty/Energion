@@ -8,8 +8,8 @@
         <th>#</th>
         <th>Name</th>
         <th>Father / Husband Name</th>
+        <th>Application ID</th>
         <th>Connection Category</th>
-        <th>Connection Type</th>
         <th>Load Demand</th>
         <th>Status</th>
         <th>Actions</th>
@@ -20,8 +20,8 @@
         <td>{{ i + 1 }}</td>
         <td>{{ c.consumerDetails.applicantName }}</td>
         <td>{{ c.consumerDetails.father_husbandName }}</td>
+        <td>{{ c.ApplicationID }}</td>
         <td>{{ c.consumerDetails.connectionCategory }}</td>
-        <td>{{ c.consumerDetails.connectionType }}</td>
         <td>{{ c.consumerDetails.loadDemand }}</td>
         <td>{{ c.status == 1 ? 'Accepted' : c.status == -1 ? 'Rejected' : c.status == 2 ? 'Completed' : 'Pending'}}</td>
         <td>

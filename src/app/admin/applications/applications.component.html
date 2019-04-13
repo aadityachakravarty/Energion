@@ -7,11 +7,11 @@
         Filters
       </button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('pending')">Pending</a>
-        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('accepted')">Accepted</a>
-        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('completed')">Completed</a>
-        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('rejected')">Rejected</a>
-        <a ngbDropdownItem class="dropdown-item" (click)="getApplications('')">No Filters</a>
+        <a style="cursor:pointer;" ngbDropdownItem class="dropdown-item" (click)="getApplications('pending')"><i class="fa fa-pause"></i> Pending</a>
+        <a style="cursor:pointer;" ngbDropdownItem class="dropdown-item" (click)="getApplications('accepted')"><i class="fa fa-clipboard-check"></i> Accepted</a>
+        <a style="cursor:pointer;" ngbDropdownItem class="dropdown-item" (click)="getApplications('completed')"><i class="fa fa-check-circle"></i> Completed</a>
+        <a style="cursor:pointer;" ngbDropdownItem class="dropdown-item" (click)="getApplications('rejected')"><i class="fa fa-times"></i> Rejected</a>
+        <a style="cursor:pointer;" ngbDropdownItem class="dropdown-item" (click)="getApplications('')"><i class="fa fa-ban"></i> No Filters</a>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
         <td>{{ c.consumerDetails.contactNumber }}</td>
         <td>{{ c.consumerDetails.connectionCategory }}</td>
         <td>{{ c.consumerDetails.connectionType }}</td>
-        <td>{{ c._id }}</td>
+        <td>{{ c.ApplicationID }}</td>
         <td>{{ c.status == 1 ? 'Accepted' : c.status == 2 ? 'Completed' : c.status == -1 ? 'Rejected' : 'Pending' }}</td>
         <td>
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

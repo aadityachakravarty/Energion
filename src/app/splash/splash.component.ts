@@ -8,6 +8,8 @@ import { TitleService } from '../title.service';
 })
 export class SplashComponent implements OnInit {
 
+  token: String = localStorage.token;
+
   constructor(
     private title: TitleService
   ) { }

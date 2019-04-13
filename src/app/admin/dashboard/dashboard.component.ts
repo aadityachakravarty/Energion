@@ -8,17 +8,20 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  profile: any = JSON.parse(localStorage.profile);
+  profile: any = {};
 
   constructor(
     private auth: AuthService
   ) { }
 
   ngOnInit() {
+    this.auth.getInfo().then((res: any) => {
+      delete res.data.level;
+      this.profile = res.data;
+    });
   }
 
   logout() {
     this.auth.logout();
   }
-
 }

@@ -18,7 +18,6 @@ export class AuthService {
       (res: any) => {
         if (res.success) {
           localStorage.setItem('token', res.token);
-          this.getProfile();
           this.router.navigate(['/admin']);
         }
         else {
@@ -33,23 +32,6 @@ export class AuthService {
         if (next) {
           next();
         }
-      }
-    );
-  }
-
-  getProfile() {
-    this.http.get('/api/auth/status', { headers: { 'x-access-token': localStorage.token } }).subscribe(
-      (res: any) => {
-        if (res.success) {
-          delete res.data.level;
-          localStorage.setItem('profile', JSON.stringify(res.data));
-        }
-        else {
-          this.notif.fire('warning', 'Invalid Session, please re-authenticate.');
-        }
-      },
-      (err) => {
-        this.notif.fire('danger', err.message);
       }
     );
   }
