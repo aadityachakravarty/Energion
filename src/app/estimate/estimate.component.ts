@@ -16,6 +16,7 @@ export class EstimateComponent implements OnInit {
   public token = localStorage.token;
   loading: boolean = false;
   locationAccess: boolean = false;
+  addressAccess: boolean = false;
 
   constructor(
     private title: TitleService,
@@ -35,7 +36,6 @@ export class EstimateComponent implements OnInit {
   });
 
   getEstimate() {
-    console.log(this.validateForm());
     this.loading = true;
     this.http.post('/api/estimate/evaluate', this.estForm.value).subscribe(
       (res: any) => {
@@ -74,7 +74,7 @@ export class EstimateComponent implements OnInit {
         if (res.success) {
           if (res.data.length == 1) {
             let selectedLoc = res.data[0];
-            this.locationAccess = true;
+            this.addressAccess = true;
             this.setLocation(selectedLoc.location);
           }
           else {
@@ -118,7 +118,7 @@ export class EstimateComponent implements OnInit {
   }
 
   validateForm() {
-    return !(this.estForm.valid && this.locationAccess);
+    return !(this.estForm.valid && (this.locationAccess || this.addressAccess));
   }
 
 }
