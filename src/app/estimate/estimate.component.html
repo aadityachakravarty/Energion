@@ -15,7 +15,7 @@
       <form [formGroup]="estForm" (ngSubmit)="getEstimate()">
         <div class="form-group text-center" *ngIf="!locationAccess">
           <input (blur)="getAddresses()" formControlName="address" class="m-auto col-sm-8 form-control" type="text"
-            [ngClass]="getValid('location') ? 'is-valid' : getValid('location') == undefined ? '' : 'is-invalid'"
+            [ngClass]="getValid('address') ? 'is-valid' : getValid('address') == undefined ? '' : 'is-invalid'"
             placeholder="Address">
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@
             [ngClass]="getValid('load') ? 'is-valid' : getValid('load') == undefined ? '' : 'is-invalid'"
             placeholder="Power Required (in kW)">
         </div>
-        <button type="submit" [disabled]="!estForm.valid" class="btn btn-dark">
+        <button type="submit" [disabled]="validateForm()" class="btn btn-dark">
           <i *ngIf="!loading" class="fa fa-calculator"></i>
           <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
           Get Estimate</button>

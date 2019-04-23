@@ -35,6 +35,7 @@ export class EstimateComponent implements OnInit {
   });
 
   getEstimate() {
+    console.log(this.validateForm());
     this.loading = true;
     this.http.post('/api/estimate/evaluate', this.estForm.value).subscribe(
       (res: any) => {
@@ -73,6 +74,7 @@ export class EstimateComponent implements OnInit {
         if (res.success) {
           if (res.data.length == 1) {
             let selectedLoc = res.data[0];
+            this.locationAccess = true;
             this.setLocation(selectedLoc.location);
           }
           else {
@@ -81,7 +83,7 @@ export class EstimateComponent implements OnInit {
           this.loading = false;
         }
         else {
-          this.notif.fire('warning', res.msg);
+          this.estForm.controls.address.setErrors({ 'incorrect': true });
           this.loading = false;
         }
       },
@@ -111,8 +113,12 @@ export class EstimateComponent implements OnInit {
   getValid(key) {
     let keyset = this.estForm.get(key);
     if ((keyset.dirty || keyset.touched)) {
-      return  keyset.valid;
+      return keyset.valid;
     }
+  }
+
+  validateForm() {
+    return !(this.estForm.valid && this.locationAccess);
   }
 
 }
