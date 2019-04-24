@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
 })
 export class NewApplicationComponent implements OnInit {
 
-  profile: any = JSON.parse(localStorage.profile);
-
   constructor(
     private fb: FormBuilder,
     private notif: NotificationService,
