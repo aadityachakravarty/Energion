@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/alerts/notification.service';
 import { TitleService } from 'src/app/title.service';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-userlist',
@@ -15,7 +16,8 @@ export class UserlistComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private notif: NotificationService,
-    private title: TitleService
+    private title: TitleService,
+    public ngb: NgProgress
   ) { }
 
   ngOnInit() {
@@ -24,16 +26,20 @@ export class UserlistComponent implements OnInit {
   }
 
   getUsers() {
+    this.ngb.start();
     this.http.get('/api/admin/getUsers', { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
           this.data = res.data;
+          this.ngb.done();
         }
         else {
+          this.ngb.done();
           this.notif.fire('warning', res.msg);
         }
       },
       (err) => {
+        this.ngb.done();
         this.notif.fire('danger', err.message);
       }
     );

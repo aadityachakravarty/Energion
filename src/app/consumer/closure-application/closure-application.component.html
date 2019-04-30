@@ -1,23 +1,21 @@
 <div class="modal-header">
-    <h4 class="modal-title">Request Closure</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="row">
-      <form [formGroup]="closeForm" (ngSubmit)="reqClose()">
-        <div class="form-row w-100 ml-4">
-          <div class="form-group">
-            <label for="formAddress">Reason for Closure</label>
-            <textarea formControlName="reason" class="form-control w-100" id="formAddress" rows="3"></textarea>
-            <hr>
-            <input [disabled]="!closeForm.valid" class="btn btn-primary" type="submit" value="Request Closure">
-          </div>
-        </div>
-      </form>
+  <h5 class="modal-title" id="exampleModalLongTitle">Request Application Closure</h5>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="closeForm" (ngSubmit)="reqClose()">
+    <div class="form-row w-100">
+      <div class="form-group w-100">
+        <label for="readon">Please specify reason for closure.</label>
+        <textarea formControlName="reason" class="form-control" id="formAddress" rows="3"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Close</button>
-  </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" (click)="reqClose()" [disabled]="!closeForm.valid"
+    class="btn btn-primary">Request Transfer</button>
+</div>

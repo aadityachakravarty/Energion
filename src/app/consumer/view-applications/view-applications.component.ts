@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TransferApplicationComponent } from '../transfer-application/transfer-application.component';
 import { ClosureApplicationComponent } from '../closure-application/closure-application.component';
 import { DeleteApplicationComponent } from '../delete-application/delete-application.component';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-view-applications',
@@ -20,7 +21,8 @@ export class ViewApplicationsComponent implements OnInit {
     private title: TitleService,
     private notif: NotificationService,
     private http: HttpClient,
-    private modal: NgbModal
+    private modal: NgbModal,
+    public ngb: NgProgress
   ) { }
 
   ngOnInit() {
@@ -29,17 +31,21 @@ export class ViewApplicationsComponent implements OnInit {
   }
 
   getConnections() {
+    this.ngb.start();
     this.http.get('/api/connection/my', { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
           this.data = res.data;
+          this.ngb.done();
         }
         else {
           this.notif.fire('warning', res.msg);
+          this.ngb.done();
         }
       },
       (err) => {
         this.notif.fire('danger', err.message);
+        this.ngb.done();
       }
     );
   }

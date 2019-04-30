@@ -43,8 +43,8 @@ export class NewApplicationComponent implements OnInit {
     this.http.post('/api/connection/new', this.application.value, { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
-          this.notif.fire('success', res.msg);
           this.router.navigate(['/consumer/view-applications']);
+          this.notif.fire('success', res.msg);
         }
         else {
           this.notif.fire('warning', res.msg);

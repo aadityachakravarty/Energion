@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { RoundupPipe } from './estimate/roundup.pipe';
   imports: [
     BrowserModule,
     NgbModule,
+    NgProgressModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,

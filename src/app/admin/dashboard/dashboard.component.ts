@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ export class DashboardComponent implements OnInit {
   profile: any = {};
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    public ngp: NgProgress
   ) { }
 
   ngOnInit() {

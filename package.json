@@ -24,6 +24,7 @@
     "@angular/router": "~7.2.8",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
+    "@ngx-progressbar/core": "^3.0.2",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
@@ -40,6 +41,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "request": "^2.88.0",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.1",
     "tslib": "^1.9.0",
     "typescript": "~3.2.4",
     "zone.js": "~0.8.29"

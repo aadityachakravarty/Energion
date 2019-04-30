@@ -5,6 +5,7 @@ import { TitleService } from 'src/app/title.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcceptComponent } from './accept/accept.component';
 import { RejectComponent } from './reject/reject.component';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-applications',
@@ -20,7 +21,8 @@ export class ApplicationsComponent implements OnInit {
     private http: HttpClient,
     private notif: NotificationService,
     private title: TitleService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    public ngb: NgProgress
   ) { }
 
   ngOnInit() {
@@ -29,17 +31,21 @@ export class ApplicationsComponent implements OnInit {
   }
 
   getApplications(filter: string) {
+    this.ngb.start();
     this.http.get(`/api/admin/getApplications?filter=${filter}`, { headers: { 'x-access-token': localStorage.token } }).subscribe(
       (res: any) => {
         if (res.success) {
           this.data = res.data;
+          this.ngb.done();
         }
         else {
           this.notif.fire('warning', res.msg);
+          this.ngb.done();
         }
       },
       (err) => {
         this.notif.fire('danger', err.message);
+        this.ngb.done();
       }
     );
   }
