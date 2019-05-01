@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcceptComponent } from './accept/accept.component';
 import { RejectComponent } from './reject/reject.component';
 import { NgProgress } from '@ngx-progressbar/core';
+import { DeleteApplicationComponent } from 'src/app/consumer/delete-application/delete-application.component';
 
 @Component({
   selector: 'app-applications',
@@ -48,6 +49,16 @@ export class ApplicationsComponent implements OnInit {
         this.ngb.done();
       }
     );
+  }
+
+  deleteReq(id) {
+    const modalRef = this.modal.open(DeleteApplicationComponent);
+    modalRef.componentInstance.id = id;
+    modalRef.result.then((reason) => {
+      if (reason) {
+        this.getApplications('');
+      }
+    });
   }
 
   acceptApplication(id: string) {
