@@ -14,7 +14,8 @@ const pendingApps = (req, res) => {
             res.json({
                 success: true,
                 msg: 'Pending requests.',
-                data: results
+                data: results,
+                count: results.length
             });
         }
     });
