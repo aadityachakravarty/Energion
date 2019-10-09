@@ -10,11 +10,11 @@
 
 ## Description
 
-> This is a connection estimation project using google places API and works across India. This project aims to allow e-filing for new electric connections as well as provides a simpler interface to do all the connection related actions. The main highlight of this project is the connection cost estimation system which finds the nearest node and then calculates a set of costs.
+> This is a connection estimation project using Google places API and works across India. This project aims to allow e-filing for new electric connections as well as provides a simpler interface to do all the connection related actions. The main highlight of this project is the connection cost estimation system which finds the nearest node and then calculates a set of costs.
 
 ## Installation and Running
 
-> npm i
+> npm install or npm i
 
 > npm build
 
